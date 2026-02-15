@@ -1,0 +1,126 @@
+/* --- Craigslist Aesthetic Reset --- */
+body {
+    font-family: Arial, sans-serif;
+    font-size: 0.85em;
+    margin: 0;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* --- Top Navigation Bar --- */
+.top-nav {
+    background-color: #eeeeee;
+    padding: 3px 10px;
+    border-bottom: 1px solid #cccccc;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9em;
+}
+
+.top-nav a {
+    color: #0000ee;
+    text-decoration: none;
+}
+
+.top-nav a:hover {
+    text-decoration: underline;
+}
+
+/* --- Layout Structure --- */
+.main-container {
+    display: grid;
+    grid-template-columns: 180px 1fr; /* Fixed sidebar, flexible content */
+    gap: 15px;
+    padding: 10px;
+}
+
+/* --- Sidebar Styling --- */
+.cl-logo {
+    color: #551a8b; /* The classic Craigslist Purple */
+    font-size: 1.4em;
+    background-color: #f2f2f2;
+    text-align: center;
+    border: 1px solid #cccccc;
+    padding: 5px;
+    font-weight: normal;
+    margin: 0 0 10px 0;
+}
+
+.action-links {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 15px;
+}
+
+.action-links li a {
+    color: #0000ee;
+    text-decoration: none;
+    display: block;
+    padding: 2px 0;
+}
+
+.search-input {
+    width: 100%;
+    margin-bottom: 15px;
+    border: 1px solid #cccccc;
+}
+
+.calendar-placeholder table {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+    font-size: 0.75em;
+}
+
+.calendar-placeholder th {
+    background-color: #eeeeee;
+    border: 1px solid #cccccc;
+}
+
+.calendar-placeholder td {
+    border: 1px solid #eeeeee;
+}
+
+/* --- The 5-Column Grid --- */
+.grid-content {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Exactly 5 columns */
+    border-top: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+}
+
+.cl-column {
+    background-color: #ffffff;
+    border-right: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+    min-height: 500px;
+}
+
+.cl-column h2 {
+    background-color: #eeeeee;
+    color: #a62a2a; /* The specific Craigslist header red/brown */
+    font-size: 1em;
+    text-align: center;
+    margin: 0;
+    padding: 2px;
+    border-bottom: 1px solid #cccccc;
+    text-transform: lowercase;
+}
+
+.cl-column ul {
+    list-style: none;
+    padding: 5px;
+    margin: 0;
+}
+
+.cl-column li a {
+    color: #0000ee;
+    text-decoration: none;
+    display: block;
+    line-height: 1.4;
+}
+
+.cl-column li a:hover {
+    text-decoration: underline;
+    background-color: #ffffcc; /* Subtle yellow highlight on hover */
+}
