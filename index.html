@@ -1,1 +1,59 @@
-<h1>Hello from OpenBSD</h1>
+CTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ignacio2600 | Cyber Lab</title>
+    <style>
+        /* The "Hacker" Aesthetic */
+        body {
+            background-color: #0d1117; /* Dark GitHub Grey */
+            color: #00ff41; /* Classic Terminal Green */
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            text-shadow: 0 0 5px #00ff41;
+        }
+
+        .terminal-box {
+            border: 1px solid #30363d;
+            padding: 2rem;
+            background: #161b22;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            max-width: 80%;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 20px;
+            background: #00ff41;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        h1 { color: #ffffff; }
+        .path { color: #58a6ff; } /* OpenBSD Blue */
+    </style>
+</head>
+<body>
+    <div class="terminal-box">
+        <p class="path">ignacio2600@openbsd:~/I-Do-Cyber $ ls</p>
+        <h1>> System Status: Online</h1>
+        <p>Target: Web Development & Bug Bounty Hunting</p>
+        <p>Current Task: Mastering SSH & Git Architecture</p>
+        <p>Progress: [##########----------] 50%</p>
+        <p>Initialize Lab... <span class="cursor"></span></p>
+    </div>
+</body>
+</html>
