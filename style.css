@@ -3,8 +3,8 @@ body {
     font-family: Arial, sans-serif;
     font-size: 0.85em;
     margin: 0;
-    background-color: #ffffff;
-    color: #000000;
+    background-color: #00FF00;
+    color: #00FF00;
 }
 
 /* --- Top Navigation Bar --- */
@@ -18,7 +18,7 @@ body {
 }
 
 .top-nav a {
-    color: #0000ee;
+    color: #00FF00;
     text-decoration: none;
 }
 
@@ -40,7 +40,7 @@ body {
     font-size: 1.4em;
     background-color: #f2f2f2;
     text-align: center;
-    border: 1px solid #cccccc;
+    border: 1px solid #00FF00;
     padding: 5px;
     font-weight: normal;
     margin: 0 0 10px 0;
@@ -53,7 +53,7 @@ body {
 }
 
 .action-links li a {
-    color: #0000ee;
+    color: #00FF00;
     text-decoration: none;
     display: block;
     padding: 2px 0;
@@ -62,7 +62,7 @@ body {
 .search-input {
     width: 100%;
     margin-bottom: 15px;
-    border: 1px solid #cccccc;
+    border: 1px solid #00FF00;
 }
 
 .calendar-placeholder table {
@@ -74,7 +74,7 @@ body {
 
 .calendar-placeholder th {
     background-color: #eeeeee;
-    border: 1px solid #cccccc;
+    border: 1px solid #00FF00;
 }
 
 .calendar-placeholder td {
@@ -90,15 +90,15 @@ body {
 }
 
 .cl-column {
-    background-color: #ffffff;
-    border-right: 1px solid #cccccc;
+    background-color: #00FF00;
+    border-right: 1px solid #00FF00;
     border-bottom: 1px solid #cccccc;
     min-height: 500px;
 }
 
 .cl-column h2 {
     background-color: #eeeeee;
-    color: #a62a2a; /* The specific Craigslist header red/brown */
+    color: #00FF00; /* The specific Craigslist header red/brown */
     font-size: 1em;
     text-align: center;
     margin: 0;
@@ -114,7 +114,7 @@ body {
 }
 
 .cl-column li a {
-    color: #0000ee;
+    color: #00FF00;
     text-decoration: none;
     display: block;
     line-height: 1.4;
