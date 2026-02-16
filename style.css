@@ -1,97 +1,28 @@
-/* The Dark Jungle Theme v3.0 */
+/* Ensure the foundation is solid */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #000000; /* Force black at the root */
+}
+
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Minimum height is the full screen */
     background-color: #000000;
     color: #b0b0b0;
     font-family: 'Courier New', Courier, monospace;
-    margin: 0;
-    padding: 0;
 }
 
-/* Top Navigation Bar */
-.top-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    border-bottom: 1px solid #333;
-    background-color: #1a1a1a;
-}
-
-.nav-center {
-    color: #d1d1d1;
-    font-weight: bold;
-    font-size: 1.1em;
-    letter-spacing: 2px;
-}
-
-.nav-left a {
-    color: #8888ee;
-    text-decoration: none;
-}
-
-/* New Search Bar Style */
-.nav-search {
-    background-color: #000;
-    border: 1px solid #444;
-    color: #8888ee;
-    padding: 5px 10px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 0.9em;
-    outline: none;
-}
-
-.nav-search:focus {
-    border-color: #8888ee;
-    color: #fff;
-}
-
-/* Main Content Grid */
+/* Allow the grid to take up all available vertical space */
 .grid-content {
+    flex-grow: 1; 
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 40px;
     padding: 50px 20px;
     max-width: 1250px;
     margin: 0 auto;
-}
-
-/* Column Headers */
-.cl-column h2 {
-    background-color: transparent;
-    color: #d1d1d1;
-    padding: 0;
-    margin: 0 0 5px 0;
-    font-size: 1.1em;
-    text-transform: lowercase;
-}
-
-.cl-column h2::after {
-    content: "====================";
-    display: block;
-    color: #444;
-    font-size: 0.8em;
-    margin-top: -2px;
-    overflow: hidden;
-}
-
-/* Link Lists */
-ul {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0 0 0;
-}
-
-li {
-    margin-bottom: 8px;
-}
-
-li a {
-    text-decoration: none;
-    color: #8888ee;
-    font-size: 0.95em;
-}
-
-li a:hover {
-    color: #ffffff;
-    text-decoration: underline;
+    background-color: #000000;
 }
