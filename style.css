@@ -1,11 +1,10 @@
-/* The Dark Jungle Theme v3.4 */
+/* The Dark Jungle Theme v3.5 */
 
-/* 1. Global Reset & Persistence of Black */
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: #000000; /* No gray at the bottom */
+    background-color: #000000;
 }
 
 body {
@@ -16,7 +15,6 @@ body {
     font-family: 'Courier New', Courier, monospace;
 }
 
-/* 2. Navigation - Fixed Alignment */
 .top-nav {
     display: flex;
     justify-content: space-between;
@@ -26,10 +24,7 @@ body {
     background-color: #1a1a1a;
 }
 
-.nav-left, .nav-right {
-    flex: 1; /* These maintain the balance for the center greeting */
-}
-
+.nav-left, .nav-right { flex: 1; }
 .nav-center {
     flex: 2;
     text-align: center;
@@ -38,34 +33,18 @@ body {
     font-size: 1.1em;
     letter-spacing: 2px;
 }
+.nav-right { text-align: right; }
+.nav-left a { color: #8888ee; text-decoration: none; }
 
-.nav-right {
-    text-align: right;
-}
-
-.nav-left a {
-    color: #8888ee; /* High readability blue */
-    text-decoration: none;
-}
-
-/* 3. Search Bar - Stealth Mode */
 .nav-search {
     background-color: #000;
     border: 1px solid #444;
-    color: #b0b0b0; /* Gray letters */
+    color: #b0b0b0;
     padding: 5px 10px;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 0.9em;
     outline: none;
-    width: 200px;
 }
 
-.nav-search:focus {
-    border-color: #8888ee;
-    color: #ffffff;
-}
-
-/* 4. Main Grid */
 .grid-content {
     flex-grow: 1; 
     display: grid;
@@ -76,18 +55,13 @@ body {
     margin: 0 auto;
 }
 
-/* 5. Topics - Centered with Underlines */
-.cl-column {
-    text-align: center;
-}
-
+.cl-column { text-align: center; }
 .cl-column h2 {
     color: #d1d1d1;
     margin: 0 0 5px 0;
     font-size: 1.1em;
     text-transform: lowercase;
 }
-
 .cl-column h2::after {
     content: "====================";
     display: block;
@@ -97,87 +71,28 @@ body {
     overflow: hidden;
 }
 
-/* 6. Link Lists - High Readability */
-ul {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0 0 0;
-}
+ul { list-style: none; padding: 0; margin: 10px 0 0 0; }
+li { margin-bottom: 8px; }
+li a { text-decoration: none; color: #8888ee; font-size: 0.95em; transition: 0.2s; }
+li a:hover { color: #ffffff; text-decoration: underline; cursor: pointer; }
 
-li {
-    margin-bottom: 8px;
-}
-
-li a {
-    text-decoration: none;
-    color: #8888ee; /* Restored original color */
-    font-size: 0.95em;
-    transition: color 0.2s;
-}
-
-li a:hover {
-    color: #ffffff;
-    text-decoration: underline;
-    cursor: pointer;
-}
-/* Note Page Layout */
-.note-container {
-    max-width: 850px;
-    margin: 40px auto;
-    padding: 0 20px;
-    flex-grow: 1;
-}
-
-.note-header h1 {
-    color: #ffffff;
-    font-size: 2em;
-    margin-bottom: 5px;
-}
-
-.metadata {
-    font-size: 0.85em;
-    color: #555;
-    letter-spacing: 1px;
-}
-
-.note-content {
-    color: #b0b0b0;
-    font-size: 1.05em;
-    line-height: 1.7;
-}
-
-.note-content h3 {
-    color: #d1d1d1;
-    margin-top: 40px;
-    text-transform: uppercase;
-    font-size: 1.1em;
-    letter-spacing: 1px;
-}
-
-/* Code Block Styling */
-pre {
-    background-color: #0a0a0a;
-    border: 1px solid #222;
-    padding: 20px;
-    color: #8888ee;
-    overflow-x: auto;
-    position: relative;
-    margin: 20px 0;
-}
-
-pre::before {
-    content: "CODE_INPUT";
-    display: block;
+/* Footer / Timestamp Style */
+.jungle-footer {
+    text-align: center;
+    padding: 40px 0;
     font-size: 0.7em;
     color: #444;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #222;
 }
 
-code {
-    font-family: 'Courier New', Courier, monospace;
-}
+.divider { color: #333; margin-bottom: 10px; }
 
-strong {
-    color: #ffffff;
-}
+/* Note Page Specific Styles */
+.note-container { max-width: 850px; margin: 40px auto; padding: 0 20px; flex-grow: 1; }
+.note-header h1 { color: #ffffff; font-size: 2em; margin-bottom: 5px; }
+.metadata { font-size: 0.85em; color: #555; letter-spacing: 1px; }
+.note-content { color: #b0b0b0; font-size: 1.05em; line-height: 1.7; }
+.note-content h3 { color: #d1d1d1; margin-top: 40px; text-transform: uppercase; font-size: 1.1em; }
+pre { background-color: #0a0a0a; border: 1px solid #222; padding: 20px; color: #8888ee; overflow-x: auto; position: relative; margin: 20px 0; }
+pre::before { content: "CODE_INPUT"; display: block; font-size: 0.7em; color: #444; margin-bottom: 10px; border-bottom: 1px solid #222; }
+code { font-family: 'Courier New', Courier, monospace; }
+strong { color: #ffffff; }
