@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+/<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -95,16 +95,22 @@
         "INITIALIZING NEURAL LINK...", "SEEK THE TRUTH IN THE CODE"
     ];
 
-    function typeWriter(text, i, fnCallback) {
-        if (i < text.length) {
-            document.getElementById("jungle-quote").innerHTML = text.substring(0, i+1) +'<span aria-hidden="true" class="cursor"></span>';
-            setTimeout(function() {
-                typeWriter(text, i + 1, fnCallback)
-            }, 100); // Speed of typing (100ms per character)
-        } else if (typeof fnCallback == 'function') {
-            setTimeout(fnCallback, 2000); // Pause at the end
+   function typeWriter(text, i, fnCallback) {
+    if (i < text.length) {
+        // While typing: Show text + cursor
+        document.getElementById("jungle-quote").innerHTML = text.substring(0, i+1) +'<span aria-hidden="true" class="cursor"></span>';
+        setTimeout(function() {
+            typeWriter(text, i + 1, fnCallback)
+        }, 100); 
+    } else {
+        // DONE TYPING: Set the text WITHOUT the cursor span
+        document.getElementById("jungle-quote").innerHTML = text;
+        
+        if (typeof fnCallback == 'function') {
+            setTimeout(fnCallback, 2000);
         }
     }
+}
 
     function updateQuote() {
         const quoteElement = document.getElementById('jungle-quote');
