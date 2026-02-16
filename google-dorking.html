@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jungle://Notes/OSINT/Google-Dorking</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="top-nav">
+        <div class="nav-left">
+            <a href="index.html">jungle</a> > <a href="#">osint</a> > <b>google dorking</b>
+        </div>
+        <div class="nav-center">SYSTEM_NOTE_VIEWER</div>
+        <div class="nav-right">
+            <a href="index.html" style="color: #8888ee; text-decoration: none;">[ESC] BACK</a>
+        </div>
+    </nav>
+
+    <main class="note-container">
+        <header class="note-header">
+            <h1>> google dorking</h1>
+            <p class="metadata">DATE: 2026-02-16 | AUTHOR: OPERATOR | STATUS: DECLASSIFIED</p>
+            <div class="divider">=======================================================</div>
+        </header>
+
+        <article class="note-content">
+            <p>Google Dorking (Google Hacking) is the art of using advanced operators to filter the noise of the surface web. In the jungle, information isn't always hidden; sometimes it's just poorly guarded.</p>
+            
+            <h3>01. Essential Operators</h3>
+            <p>The building blocks of any successful reconnaissance mission:</p>
+            <pre><code>site:target.com      # Restrict results to a specific domain
+filetype:log         # Search for specific file extensions
+intitle:"index of"   # Find open directory listings
+inurl:admin          # Look for specific strings in the URL
+"exact phrase"       # Force an exact match search</code></pre>
+
+            <h3>02. The "Low-Hanging Fruit" Dorks</h3>
+            <p>Use these to find sensitive files that were never meant to be indexed by search crawlers.</p>
+            
+            
+
+            <pre><code># Find publicly exposed PDF documents on a gov site
+site:*.gov filetype:pdf "internal use only"
+
+# Look for environment configuration files (High Value)
+filetype:env "DB_PASSWORD"
+
+# Find exposed PHPMyAdmin panels
+inurl:/phpmyadmin/setup/index.php</code></pre>
+
+            <h3>03. Defensive Measures</h3>
+            <p>How do you stop the jungle from looking back at you? Ensure your <code>robots.txt</code> is configured and use <strong>X-Robots-Tag</strong> headers to keep sensitive paths out of the index.</p>
+            
+            <div class="divider">=======================================================</div>
+            <p style="text-align: center; color: #444;">[ END OF FILE ]</p>
+        </article>
+    </main>
+
+</body>
+</html>
