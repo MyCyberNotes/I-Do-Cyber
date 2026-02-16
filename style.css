@@ -1,13 +1,13 @@
-/* The Dark Jungle Theme v3.6 
-    Master Stylesheet for MyCyberNotes
+/* THE DARK JUNGLE MASTER STYLESHEET 
+    Version: 3.7
 */
 
-/* --- 1. GLOBAL RESET & BASE --- */
+/* --- 1. GLOBAL SETTINGS --- */
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: #000000; /* Pure black background */
+    background-color: #000000;
 }
 
 body {
@@ -18,7 +18,7 @@ body {
     font-family: 'Courier New', Courier, monospace;
 }
 
-/* --- 2. NAVIGATION BAR --- */
+/* --- 2. TOP NAVIGATION --- */
 .top-nav {
     display: flex;
     justify-content: space-between;
@@ -49,7 +49,7 @@ body {
     outline: none;
 }
 
-/* --- 3. MAIN GRID LAYOUT --- */
+/* --- 3. THE GRID (HOMEPAGE) --- */
 .grid-content {
     flex-grow: 1; 
     display: grid;
@@ -61,14 +61,12 @@ body {
 }
 
 .cl-column { text-align: center; }
-
 .cl-column h2 {
     color: #d1d1d1;
     margin: 0 0 5px 0;
     font-size: 1.1em;
     text-transform: lowercase;
 }
-
 .cl-column h2::after {
     content: "====================";
     display: block;
@@ -78,51 +76,37 @@ body {
     overflow: hidden;
 }
 
-/* --- 4. SCROLLABLE LINK LISTS --- */
+/* --- 4. THE SCROLLING LISTS --- */
 ul {
     list-style: none;
     padding: 0;
     margin: 10px 0 0 0;
     
-    /* THE SCROLL LOGIC */
-    max-height: 110px;    /* Fixed height for exactly ~4 links */
-    overflow-y: auto;     /* Scrollbar only appears if 5+ links */
-    padding-right: 5px;   /* Gutter for scrollbar */
-    scrollbar-width: thin;
-    scrollbar-color: #333 #000;
+    /* SCROLL LOGIC */
+    max-height: 120px;    /* Locks height to about 4-5 links */
+    overflow-y: auto;     /* Adds scrollbar ONLY when content overflows */
+    padding-right: 5px;
 }
 
 li { margin-bottom: 8px; }
-
-li a {
-    text-decoration: none;
-    color: #8888ee; /* Original readable blue-purple */
-    font-size: 0.95em;
-    transition: 0.2s;
+li a { 
+    text-decoration: none; 
+    color: #8888ee; 
+    font-size: 0.95em; 
+    transition: 0.2s; 
+}
+li a:hover { 
+    color: #ffffff; 
+    text-decoration: underline; 
 }
 
-li a:hover {
-    color: #ffffff;
-    text-decoration: underline;
-    cursor: pointer;
-}
+/* CUSTOM SCROLLBAR (CHROME/EDGE/SAFARI) */
+ul::-webkit-scrollbar { width: 4px; }
+ul::-webkit-scrollbar-track { background: #000; }
+ul::-webkit-scrollbar-thumb { background: #222; border-radius: 2px; }
+ul::-webkit-scrollbar-thumb:hover { background: #8888ee; }
 
-/* --- 5. CUSTOM SCROLLBAR (CHROME/SAFARI/EDGE) --- */
-ul::-webkit-scrollbar {
-    width: 4px;
-}
-ul::-webkit-scrollbar-track {
-    background: #000;
-}
-ul::-webkit-scrollbar-thumb {
-    background: #222; /* Very subtle until hover */
-    border-radius: 2px;
-}
-ul::-webkit-scrollbar-thumb:hover {
-    background: #8888ee; /* Glows purple when you use it */
-}
-
-/* --- 6. FOOTER & SYSTEM INFO --- */
+/* --- 5. FOOTER & TIMESTAMPS --- */
 .jungle-footer {
     text-align: center;
     padding: 40px 0;
@@ -131,14 +115,13 @@ ul::-webkit-scrollbar-thumb:hover {
 }
 .divider { color: #333; margin-bottom: 10px; }
 
-/* --- 7. NOTE PAGE SPECIFIC STYLES --- */
+/* --- 6. NOTE PAGE STYLES (INTERNAL PAGES) --- */
 .note-container { 
     max-width: 850px; 
     margin: 40px auto; 
     padding: 0 20px; 
     flex-grow: 1; 
 }
-
 .note-header h1 { color: #ffffff; font-size: 2em; margin-bottom: 5px; }
 .metadata { font-size: 0.85em; color: #555; letter-spacing: 1px; }
 .note-content { color: #b0b0b0; font-size: 1.05em; line-height: 1.7; }
@@ -147,11 +130,9 @@ ul::-webkit-scrollbar-thumb:hover {
     margin-top: 40px; 
     text-transform: uppercase; 
     font-size: 1.1em; 
-    border-left: 2px solid #8888ee;
-    padding-left: 10px;
 }
 
-/* Styled Code Blocks in Notes */
+/* CODE BLOCKS */
 pre { 
     background-color: #0a0a0a; 
     border: 1px solid #222; 
@@ -161,7 +142,6 @@ pre {
     position: relative; 
     margin: 20px 0; 
 }
-
 pre::before { 
     content: "CODE_INPUT"; 
     display: block; 
@@ -170,6 +150,5 @@ pre::before {
     margin-bottom: 10px; 
     border-bottom: 1px solid #222; 
 }
-
 code { font-family: 'Courier New', Courier, monospace; }
 strong { color: #ffffff; }
