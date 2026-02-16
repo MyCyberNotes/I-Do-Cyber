@@ -1,8 +1,8 @@
 /* The Dark Jungle Theme */
 body {
-    background-color: #000000; /* Pure Black Background */
-    color: #b0b0b0;           /* Medium Gray Text */
-    font-family: 'Courier New', Courier, monospace; /* Optional: Terminal font */
+    background-color: #000000;
+    color: #b0b0b0;
+    font-family: 'Courier New', Courier, monospace;
     margin: 0;
     padding: 0;
 }
@@ -12,62 +12,70 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 10px 20px;
     border-bottom: 1px solid #333;
-    background-color: #1a1a1a; /* Dark gray nav bar */
+    background-color: #1a1a1a;
 }
 
 .nav-center {
-    color: #d1d1d1; /* Brighter gray for the banner */
+    color: #d1d1d1;
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1.1em;
     letter-spacing: 2px;
 }
 
 .nav-left a, .nav-right a {
-    color: #8888ee; /* Soft blue for links so they don't disappear */
+    color: #8888ee;
     text-decoration: none;
 }
 
-/* Main Content Grid */
+/* Main Content Grid - Removed Sidebar Logic */
 .grid-content {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 20px;
+    /* This creates as many columns as will fit, at least 250px wide each */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 40px;
+    padding: 40px 20px;
 }
 
-/* Column Headers */
+/* Column Headers - Terminal Style */
 .cl-column h2 {
-    background-color: #222222; /* Darker gray header box */
-    color: #d1d1d1;           /* Lighter gray text for the title */
-    padding: 5px;
+    background-color: transparent;
+    color: #d1d1d1;
+    padding: 0;
+    margin: 0 0 5px 0;
     font-size: 1.1em;
-    border-bottom: 2px solid #444;
-    margin-top: 0;
     text-transform: lowercase;
+}
+
+/* The ASCII Underline */
+.cl-column h2::after {
+    content: "====================";
+    display: block;
+    color: #444;
+    font-size: 0.8em;
+    margin-top: -2px;
+    overflow: hidden;
 }
 
 /* Link Lists */
 ul {
     list-style: none;
     padding: 0;
+    margin: 10px 0 0 0;
+}
+
+li {
+    margin-bottom: 8px;
 }
 
 li a {
     text-decoration: none;
-    color: #8888ee; /* Muted blue for links */
-    font-size: 0.9em;
-    line-height: 1.6;
+    color: #8888ee;
+    font-size: 0.95em;
 }
 
 li a:hover {
-    color: #ffffff; /* Glow white when you hover over them */
+    color: #ffffff;
     text-decoration: underline;
-}
-
-/* Sidebar Logo */
-.cl-logo {
-    color: #888; 
-    margin: 20px;
 }
