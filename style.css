@@ -1,7 +1,8 @@
-/* General Page Styling */
+/* The Dark Jungle Theme */
 body {
-    background-color: #ffffff;
-    font-family: Arial, sans-serif;
+    background-color: #000000; /* Pure Black Background */
+    color: #b0b0b0;           /* Medium Gray Text */
+    font-family: 'Courier New', Courier, monospace; /* Optional: Terminal font */
     margin: 0;
     padding: 0;
 }
@@ -12,67 +13,39 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    border-bottom: 1px solid #ccc;
-    background-color: #f8f8f8;
+    border-bottom: 1px solid #333;
+    background-color: #1a1a1a; /* Dark gray nav bar */
 }
 
 .nav-center {
+    color: #d1d1d1; /* Brighter gray for the banner */
     font-weight: bold;
     font-size: 1.2em;
     letter-spacing: 2px;
 }
 
 .nav-left a, .nav-right a {
-    color: #0000EE;
+    color: #8888ee; /* Soft blue for links so they don't disappear */
     text-decoration: none;
 }
 
-/* Layout Container */
-.main-container {
-    display: flex;
-    padding: 20px;
-}
-
-/* Sidebar Styling */
-.sidebar {
-    width: 200px;
-    padding-right: 20px;
-}
-
-.cl-logo {
-    color: #a64d79; /* Classic Jungle/Craigslist purple */
-    font-size: 2em;
-    margin: 0 0 10px 0;
-}
-
-.action-links {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 20px;
-}
-
-.search-input {
-    width: 100%;
-    padding: 5px;
-    border: 1px solid #ccc;
-}
-
-/* Main Content Grid (3 Columns) */
+/* Main Content Grid */
 .grid-content {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    flex-grow: 1;
+    padding: 20px;
 }
 
 /* Column Headers */
 .cl-column h2 {
-    background-color: #eeeeee;
+    background-color: #222222; /* Darker gray header box */
+    color: #d1d1d1;           /* Lighter gray text for the title */
     padding: 5px;
     font-size: 1.1em;
-    border-bottom: 2px solid #ddd;
-    color: #333;
+    border-bottom: 2px solid #444;
     margin-top: 0;
+    text-transform: lowercase;
 }
 
 /* Link Lists */
@@ -83,11 +56,18 @@ ul {
 
 li a {
     text-decoration: none;
-    color: #0000EE;
+    color: #8888ee; /* Muted blue for links */
     font-size: 0.9em;
     line-height: 1.6;
 }
 
 li a:hover {
+    color: #ffffff; /* Glow white when you hover over them */
     text-decoration: underline;
+}
+
+/* Sidebar Logo */
+.cl-logo {
+    color: #888; 
+    margin: 20px;
 }
