@@ -1,13 +1,19 @@
-/* --- 1. GLOBAL RESET & BASE --- */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { 
-    background-color: #050505; 
-    color: #e0e0e0; 
-    font-family: 'Courier New', Courier, monospace; 
-    line-height: 1.6; 
-    display: flex; 
-    flex-direction: column; 
-    min-height: 100vh; 
+/* --- 1. GLOBAL SETTINGS --- */
+html, body {
+    margin: 0;
+    padding: 0;
+    /* Unifies the background to prevent the gray gap issue */
+    background-color: #0a0a0a; 
+    /* Prevents horizontal scrolling into empty space */
+    overflow-x: hidden; 
+    min-height: 100vh;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    color: #e0e0e0;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 /* --- 2. TOP NAVIGATION --- */
@@ -25,12 +31,7 @@ body {
 
 .nav-left, .nav-right { flex: 1; font-size: 0.85em; color: #888; }
 .nav-left a { color: #888; text-decoration: none; transition: 0.3s; }
-
-/* The Symmetry Fix: Muted until you hover */
-.nav-left a:hover { 
-    color: #ffffff; 
-    text-shadow: 0 0 8px rgba(255, 255, 255, 0.6); 
-}
+.nav-left a:hover { color: #ffffff; text-shadow: 0 0 8px rgba(255, 255, 255, 0.6); }
 
 .nav-center { 
     flex: 2; 
@@ -38,7 +39,6 @@ body {
     font-weight: bold; 
     letter-spacing: 2px; 
     color: #ffffff; 
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 .nav-search { 
@@ -53,20 +53,18 @@ body {
     font-family: inherit;
 }
 
-.nav-search::placeholder {
-    color: #888;
-}
+.nav-search::placeholder { color: #888; }
 
 /* --- 3. THE ROADMAP GRID --- */
 .grid-content { 
     flex-grow: 1; 
     display: grid; 
-    /* This creates the 16-column look that adapts to screen size */
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
     gap: 30px; 
     padding: 40px 20px; 
-    max-width: 1450px; 
+    max-width: 1600px; 
     margin: 0 auto; 
+    width: 100%;
 }
 
 .cl-column { 
@@ -86,17 +84,12 @@ body {
 }
 
 /* --- 4. THE SCROLLING LISTS --- */
-ul { 
-    list-style: none; 
-    max-height: 150px; 
-    overflow-y: auto; 
-    padding-right: 5px; 
-}
+ul { list-style: none; max-height: 150px; overflow-y: auto; padding-right: 5px; }
 
-/* Scrollbar Styling */
+/* Custom Scrollbar */
 ul::-webkit-scrollbar { width: 4px; }
 ul::-webkit-scrollbar-track { background: #050505; }
-ul::-webkit-scrollbar-thumb { background: #222; border-radius: 2px; }
+ul::-webkit-scrollbar-thumb { background: #222; }
 ul::-webkit-scrollbar-thumb:hover { background: #58a6ff; }
 
 li { margin-bottom: 8px; }
@@ -107,7 +100,6 @@ li a {
     transition: 0.2s; 
 }
 
-/* The Clean White Hover */
 li a:hover { 
     color: #ffffff !important; 
     text-decoration: underline; 
@@ -118,12 +110,5 @@ li a:hover {
 .divider { margin-bottom: 10px; letter-spacing: 1px; color: #222; }
 
 /* --- 6. TYPEWRITER CURSOR --- */
-.cursor { 
-    border-left: .1em solid #58a6ff; 
-    margin-left: 3px; 
-    animation: blink .7s infinite; 
-}
-@keyframes blink { 
-    from, to { border-color: transparent } 
-    50% { border-color: #58a6ff; } 
-}
+.cursor { border-left: .1em solid #58a6ff; margin-left: 3px; animation: blink .7s infinite; }
+@keyframes blink { from, to { border-color: transparent } 50% { border-color: #58a6ff; } }
