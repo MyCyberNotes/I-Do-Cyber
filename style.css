@@ -1,37 +1,31 @@
 /* ========================================================================
    KERNEL: SYSTEM_VARIABLES & GLOBAL_RESET
 ========================================================================= */
-:root {
-    --jungle-red: #ff3e3e;
-    --jungle-black: #0a0a0a;
-    --jungle-gray: #333;
-    --jungle-dark-gray: #111;
-    --text-main: #eee;
-    --text-dim: #888;
-    --font-mono: 'Courier New', monospace;
-    --font-sans: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+html {
+    background-color: #0a0a0a !important; /* The core paint color */
+    height: 100%;
 }
 
-* {
-    box-sizing: border-box;
-}
-
-html, body {
+body {
+    background-color: #0a0a0a !important;
     margin: 0;
     padding: 0;
-    background-color: var(--jungle-black) !important; /* THE BLACKOUT FIX */
-    overflow-x: hidden;
-    height: 100%; /* REQUIRED FOR 100VH LOGIC */
+    min-height: 100vh; /* Forces the body to be at least as tall as the screen */
+    display: flex;
+    flex-direction: column;
 }
 
 body.jungle-theme {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* FORCES BLACK TO THE BOTTOM */
-    color: var(--text-main);
-    font-family: var(--font-sans);
+    color: #eee;
+    font-family: 'Segoe UI', sans-serif;
 }
 
+/* Ensure the main container grows to push the footer down */
+.grid-content {
+    flex: 1 0 auto; 
+    padding: 100px 20px 40px 20px;
+}
+   
 /* ========================================================================
    STRUCTURE: THE 5-COLUMN BLADE GRID
 ========================================================================= */
