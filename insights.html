@@ -3,123 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jungle_Archive | Library Cards</title>
+    <title>Jungle - Insights</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="jungle-theme">
 
-    <nav class="top-nav">
-      <div class="nav-left">
-    <div class="dropdown">
-        <a href="javascript:void(0)" class="dropbtn" onclick="toggleMenu()">directory ▾</a>
-        <div id="myDropdown" class="dropdown-content">
-            <a href="index.html">jungle (roadmap)</a>
-            <a href="insights.html">insights (archive)</a>
-            <a href="about.html">about (operator)</a>
-            <a href="https://github.com/..." target="_blank">community</a>
+    <nav class="jungle-nav">
+        <div class="nav-left">
+            <div class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn" onclick="toggleMenu()">directory ▾</a>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="index.html">jungle (roadmap)</a>
+                    <a href="insights.html">insights (archive)</a>
+                    <a href="about.html">about (operator)</a>
+                    <a href="https://github.com/MyCyberNotes/I-Do-Cyber/discussions" target="_blank">community</a>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-        <div class="nav-center">KNOWLEDGE_ARCHIVE</div>
-        <div class="nav-right">SYSTEM: STABLE</div>
+        <div class="nav-center">
+            <span class="static-logo">LIBRARY_ARCHIVE</span>
+        </div>
+        <div class="nav-right">
+            <input type="text" placeholder="search_insights..." class="search-bar">
+        </div>
     </nav>
 
-    <main class="card-catalog">
-        <div class="library-card">
-            <div class="card-header">
-                <span class="index-number">01</span>
-                <span class="category">DESIGN_LOGIC</span>
-            </div>
-            <h3>The Bezel Rule</h3>
-            <p>Visual symmetry is the hallmark of professional hardware. In the Jungle, we replicate the ThinkPad's physical balance. Every element on the left must have a counter-weight on the right.</p>
-            <div class="punch-hole"></div>
-        </div>
+    <main class="jungle-container">
+        <header class="jungle-header">
+            <h1>INSIGHTS</h1>
+            <p class="subtitle">PREVIOUS_RECON_AND_RESEARCH_LOGS</p>
+            <div class="divider">========================================================================</div>
+        </header>
 
-        <div class="library-card">
-            <div class="card-header">
-                <span class="index-number">02</span>
-                <span class="category">UX_UI</span>
+        <div class="insights-grid">
+            <div class="insight-card">
+                <div class="card-header">[001]</div>
+                <h3>NETWORKING_FUNDAMENTALS</h3>
+                <p>Initial research into OSI Layer 4 and TCP handshakes.</p>
+                <a href="#" class="read-more">READ_LOG</a>
             </div>
-            <h3>The Copy-Paste Trap</h3>
-            <p>Convenience shouldn't break core function. If a script captures every click to copy text, it effectively kills the ability to travel to new pages. True power lies in selective automation.</p>
-            <div class="punch-hole"></div>
-        </div>
 
-        <div class="library-card">
-            <div class="card-header">
-                <span class="index-number">03</span>
-                <span class="category">COLOR_THEORY</span>
+            <div class="insight-card">
+                <div class="card-header">[002]</div>
+                <h3>OPENBSD_HARDENING</h3>
+                <p>Kernel 7.8 configuration and security posture.</p>
+                <a href="#" class="read-more">READ_LOG</a>
             </div>
-            <h3>GitHub Blue</h3>
-            <p>High-saturation colors cause eye strain. Using #58a6ff signals a professional environment. It is the "native" color of the developer, built for long night-shift sessions.</p>
-            <div class="punch-hole"></div>
-        </div>
 
-        <div class="library-card">
-            <div class="card-header">
-                <span class="index-number">04</span>
-                <span class="category">ARCHITECTURE</span>
             </div>
-            <h3>The Narrative Flow</h3>
-            <p>Information architecture is storytelling. Order topics from "Student" to "Business Owner" to create a psychological sense of progress. Logic must always precede the sale.</p>
-            <div class="punch-hole"></div>
-        </div>
-
-        <div class="library-card">
-            <div class="card-header">
-                <span class="index-number">05</span>
-                <span class="category">PSYCHOLOGY</span>
-            </div>
-            <h3>The Cursor Silence</h3>
-            <p>A blinking cursor is an active request. Removing it once the typing is finished gives the user "permission" to stop reading and start acting. It is the visual equivalent of a period.</p>
-            <div class="punch-hole"></div>
-        </div>
-
-        <div class="library-card">
-            <div class="card-header">
-                <span class="index-number">06</span>
-                <span class="category">PHILOSOPHY</span>
-            </div>
-            <h3>The Unix Pivot</h3>
-            <p>Technical choices define the project's soul. Choosing "Unix" over "Linux" respects the ancestry of OpenBSD. It signals a "Security by Default" mindset that the masses overlook.</p>
-            <div class="punch-hole"></div>
-        </div>
-
-        <div class="library-card">
-            <div class="card-header">
-                <span class="index-number">07</span>
-                <span class="category">GEOMETRY</span>
-            </div>
-            <h3>The Grid Void</h3>
-            <p>Symmetry is a visual promise to the user. An incomplete grid feels broken. Always finish the row (the Power of 20) to maintain the "Command Center" authority.</p>
-            <div class="punch-hole"></div>
-        </div>
-
-        <div class="library-card">
-            <div class="card-header">
-                <span class="index-number">08</span>
-                <span class="category">NAVIGATION</span>
-            </div>
-            <h3>Intent Mapping</h3>
-            <p>Distinguish between "Snippet Links" (for tools) and "Destination Links" (for knowledge). Never force a user to choose between copying and navigating. The path must be clear.</p>
-            <div class="punch-hole"></div>
-        </div>
-
-        <div class="library-card">
-            <div class="card-header">
-                <span class="index-number">09</span>
-                <span class="category">HUMAN_HARDWARE</span>
-            </div>
-            <h3>The Sleep Cycle</h3>
-            <p>Just like a server needs a reboot to clear its cache, the human brain requires "Offline Mode" to commit skills to memory. Hacking is 50% typing and 50% resting.</p>
-            <div class="punch-hole"></div>
-        </div>
     </main>
 
     <footer class="jungle-footer">
         <div class="divider">========================================================================</div>
-        <p>TOTAL_CARDS: 09 | ARCHIVE_STATE: READ_ONLY | KERNEL: OPENBSD 7.8</p>
+        <p>LAST_UPDATED: 2026-02-17 09:24:05 | SYSTEM: ONLINE | KERNEL: OPENBSD 7.8 GENERIC#0</p>
     </footer>
 
+    <script>
+        /* --- STICKY DIRECTORY LOGIC (CDE STYLE) --- */
+        function toggleMenu() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the menu if you click anywhere else on the screen
+        window.onclick = function(event) {
+          if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+              var openDropdown = dropdowns[i];
+              if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+              }
+            }
+          }
+        }
+    </script>
 </body>
 </html>
