@@ -179,7 +179,7 @@ li a:hover {
     left: 50%;
     transform: translateX(-50%);
 }
-/* --- 8. DROPDOWN NAVIGATION --- */
+/* --- 8. STICKY DROPDOWN (CDE STYLE) --- */
 .dropdown {
     position: relative;
     display: inline-block;
@@ -190,23 +190,26 @@ li a:hover {
     text-decoration: none;
     font-size: 0.9em;
     cursor: pointer;
+    text-transform: lowercase;
     transition: 0.3s;
-    text-transform: lowercase; /* Matches your jungle theme */
 }
 
-.dropdown:hover .dropbtn {
+/* We only highlight the button text on hover now, not open the menu */
+.dropbtn:hover {
     color: #ffffff;
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
 }
 
 .dropdown-content {
-    display: none; /* This keeps it hidden until you hover */
+    display: none; /* Hidden by default */
     position: absolute;
-    background-color: #1a1a1a; /* Dark background to match nav */
+    background-color: #1a1a1a;
     min-width: 220px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.8);
     border: 1px solid #333;
     z-index: 1001;
+    top: 100%;
+    left: 0;
     margin-top: 5px;
 }
 
@@ -217,20 +220,14 @@ li a:hover {
     display: block;
     font-size: 0.85em;
     border-bottom: 1px solid #222;
-    transition: 0.2s;
-}
-
-.dropdown-content a:last-child {
-    border-bottom: none;
 }
 
 .dropdown-content a:hover {
     background-color: #050505;
-    color: #58a6ff; /* GitHub Blue highlight */
-    padding-left: 20px; /* Subtle movement effect */
+    color: #58a6ff;
 }
 
-/* THE MAGIC: Show the menu when hovering over the directory div */
-.dropdown:hover .dropdown-content {
-    display: block;
+/* THE MAGIC: This class is toggled by JavaScript to keep the menu open */
+.show {
+    display: block !important;
 }
