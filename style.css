@@ -30,19 +30,23 @@ body.jungle-theme {
    STRUCTURE: THE 5-COLUMN BLADE GRID
 ========================================================================= */
 .grid-content {
-    flex: 1 0 auto; /* STRETCHES CONTENT TO FILL VOID */
-    max-width: 1600px;
-    margin: 80px auto 40px auto;
-    padding: 0 20px;
+    flex: 1 0 auto; 
+    /* Increased max-width and adjusted margin to center the grid better */
+    max-width: 1400px; 
+    margin: 80px auto 40px auto; 
+    
+    /* ADDED SIDE PADDING: This creates a buffer for the dropdown menu */
+    padding: 0 60px; 
+    
+    width: 100%;
 }
 
 .insights-grid {
     display: grid !important;
-    grid-template-columns: repeat(5, 1fr) !important; /* THE SQUARE-TO-RECTANGLE FIX */
-    gap: 12px;
+    grid-template-columns: repeat(5, 1fr) !important;
+    gap: 15px; /* Slightly wider gap for better breathing room */
     align-items: start;
 }
-
 /* ========================================================================
    NAV: TOP_COMMAND_BAR
 ========================================================================= */
