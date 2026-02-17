@@ -5,88 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jungle - Insights Archive</title>
     <link rel="stylesheet" href="style.css">
-
     <style>
-        /* ========================================================================
-           BANNER: PROTOCOL LINES
-        ========================================================================= */
-        .protocol-border {
-            border-top: 1px solid #444;
-            width: 100%;
-            margin: 10px 0;
-        }
-
-        /* ========================================================================
-           CARD: THE CONDENSED BLADE STRUCTURE
-        ========================================================================= */
-        .insight-card {
-            background: #0a0a0a;
-            border: 1px solid #333;
-            padding: 12px 15px; 
-            display: block; 
-            transition: all 0.3s ease;
-            height: auto; 
-        }
-
-        .insight-card:hover {
-            border-color: #555;
-        }
-
-        .card-header {
-            color: #ff3e3e;
-            font-size: 0.75em;
-            font-family: 'Courier New', monospace;
-        }
-
-        .insight-card h3 {
-            color: #eee;
-            margin: 4px 0 8px 0;
-            font-size: 0.95em;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        /* ========================================================================
-           PAYLOAD: HIDDEN DESCRIPTION LOGIC
-        ========================================================================= */
-        .insight-description {
-            display: none; 
-            color: #888;
-            font-size: 0.85em;
-            margin: 12px 0;
-            padding-top: 10px;
-            border-top: 1px dashed #333;
-            line-height: 1.4;
-        }
-
-        /* TRIGGER STATE */
-        .insight-card.active .insight-description {
-            display: block;
-        }
-
-        /* ========================================================================
-           ACTION: STICKY BUTTON CALIBRATION
-        ========================================================================= */
-        .read-more {
-            display: inline-block;
-            color: #444;
-            text-decoration: none;
-            border: 1px solid #222;
-            padding: 2px 6px;
-            font-size: 0.65em;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-transform: uppercase;
-        }
-
-        .read-more:hover {
-            color: #ff3e3e;
-            border-color: #ff3e3e;
-            background: #111;
-        }
+        .insight-card { background: #0a0a0a; border: 1px solid #333; padding: 15px; transition: 0.3s; }
+        .insight-card:hover { border-color: #555; }
+        .card-header { color: #ff3e3e; font-size: 0.75em; font-family: monospace; }
+        .insight-description { display: none; color: #888; font-size: 0.85em; margin-top: 10px; border-top: 1px dashed #333; padding-top: 10px; }
+        .insight-card.active .insight-description { display: block; }
+        .read-more { display: inline-block; color: #444; border: 1px solid #222; padding: 2px 6px; font-size: 0.65em; cursor: pointer; text-transform: uppercase; margin-top: 10px; }
     </style>
 </head>
-
 <body class="jungle-theme">
 
     <nav class="top-nav">
@@ -97,46 +24,23 @@
                     <a href="index.html">jungle (roadmap)</a>
                     <a href="insights.html">insights (archive)</a>
                     <a href="about.html">about (operator)</a>
-                    <a href="https://github.com/..." target="_blank">community</a>
                 </div>
             </div>
         </div>
         <div class="nav-center">LIBRARY_ARCHIVE</div>
-        <div class="nav-right">
-            <input type="text" placeholder="search_insights..." class="nav-search">
-        </div>
     </nav>
 
     <main class="grid-content">
-        <div class="security-posture" style="grid-column: 1 / -1; margin-bottom: 30px;">
-            <div class="protocol-border"></div>
-            <p class="posture-text" style="font-family: 'Courier New', monospace; font-size: 0.9em; color: #aaa; margin: 15px 0;">
-                <span class="status-active" style="color: #ff3e3e; font-weight: bold;">[POSTURE: SELECTIVE_DISCLOSURE]</span> — 
-                We disclose the "How" to empower the community, but redact the "Who" and "Where" to maintain absolute operational security.
-            </p>
-            <div class="protocol-border"></div>
-        </div>
-
         <div id="dynamic-grid" class="insights-grid" style="grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px;">
             </div>
     </main>
 
-    <footer class="jungle-footer">
-        <div class="divider" style="border-top: 2px solid #444; margin: 20px 0;"></div>
-        <p>LAST_UPDATED: 2026-02-17 | SYSTEM: ONLINE | KERNEL: OPENBSD 7.8</p>
-    </footer>
-
     <script>
-        // ========================================================================
-        // LOGIC: INITIALIZE ARCHIVE
-        // ========================================================================
         async function initializeArchive() {
             try {
                 const response = await fetch('insights.json');
                 const data = await response.json();
-                
-                const totalCount = data.length;
-                const releaseCount = Math.floor(totalCount / 5) * 5;
+                const releaseCount = Math.floor(data.length / 5) * 5;
                 const grid = document.getElementById('dynamic-grid');
                 grid.innerHTML = ''; 
 
@@ -144,9 +48,6 @@
                     const item = data[i];
                     const card = document.createElement('div');
                     card.className = 'insight-card';
-                    
-                    if(item.id === "020") card.style.borderLeft = "2px solid #ff3e3e";
-
                     card.innerHTML = `
                         <div class="card-header">[${item.id}]</div>
                         <h3>${item.title}</h3>
@@ -155,39 +56,15 @@
                     `;
                     grid.appendChild(card);
                 }
-                console.log(`SYSTEM_LOG: ${releaseCount} nodes active.`);
-            } catch (err) {
-                console.error("CRITICAL: JSON fetch failed. Check your file path.", err);
-            }
+            } catch (err) { console.error("CRITICAL: JSON fetch failed.", err); }
         }
 
-        // ========================================================================
-        // LOGIC: DIRECTORY DROPDOWN
-        // ========================================================================
         function toggleMenu() { document.getElementById("myDropdown").classList.toggle("show"); }
-
-        // ========================================================================
-        // LOGIC: TOGGLE LOG REVEAL
-        // ========================================================================
         function toggleLog(button) {
             const card = button.closest('.insight-card');
             card.classList.toggle('active');
             button.innerText = card.classList.contains('active') ? "CLOSE_LOG" : "READ_LOG";
         }
-
-        // ========================================================================
-        // LOGIC: GLOBAL CLICK HANDLER
-        // ========================================================================
-        window.onclick = function(event) {
-          if (!event.target.matches('.dropbtn')) {
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            for (var i = 0; i < dropdowns.length; i++) {
-              var openDropdown = dropdowns[i];
-              if (openDropdown.classList.contains('show')) { openDropdown.classList.remove('show'); }
-            }
-          }
-        }
-
         window.onload = initializeArchive;
     </script>
 </body>
