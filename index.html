@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyCyberNotes | Bug Bounty Roadmap</title>
+    <title>MyCyberNotes | Bug Bounty Mastery</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -184,15 +184,54 @@
                 <li><a href="#" class="copyable">career longevity</a></li>
             </ul>
         </section>
+
+        <section class="cl-column">
+            <h2>17_cloud_security</h2>
+            <ul>
+                <li><a href="#" class="copyable">aws s3 misconfig</a></li>
+                <li><a href="#" class="copyable">azure blob hunting</a></li>
+                <li><a href="#" class="copyable">iam policy bypass</a></li>
+                <li><a href="#" class="copyable">gcp bucket leaks</a></li>
+            </ul>
+        </section>
+
+        <section class="cl-column">
+            <h2>18_mobile_pentesting</h2>
+            <ul>
+                <li><a href="#" class="copyable">apk de-compilation</a></li>
+                <li><a href="#" class="copyable">static code analysis</a></li>
+                <li><a href="#" class="copyable">burp mobile proxy</a></li>
+                <li><a href="#" class="copyable">owasp masvs</a></li>
+            </ul>
+        </section>
+
+        <section class="cl-column">
+            <h2>19_source_code_audit</h2>
+            <ul>
+                <li><a href="#" class="copyable">secret scanning</a></li>
+                <li><a href="#" class="copyable">finding sinkholes</a></li>
+                <li><a href="#" class="copyable">logic flaw detection</a></li>
+                <li><a href="#" class="copyable">sast vs dast tools</a></li>
+            </ul>
+        </section>
+
+        <section class="cl-column">
+            <h2>20_toolkit_lab</h2>
+            <ul>
+                <li><a href="#" class="copyable">vps setup (openbsd)</a></li>
+                <li><a href="#" class="copyable">auto-recon pipelines</a></li>
+                <li><a href="#" class="copyable">discord/slack notify</a></li>
+                <li><a href="#" class="copyable">custom bash scripts</a></li>
+            </ul>
+        </section>
     </main>
 
     <footer class="jungle-footer">
-        <div class="divider">=======================================================</div>
-        <p>LAST_UPDATED: 2026-02-16 10:14:22 | SYSTEM: ONLINE</p>
+        <div class="divider">========================================================================</div>
+        <p>LAST_UPDATED: 2026-02-16 22:30:11 | SYSTEM: ONLINE | KERNEL: OPENBSD 7.4 GENERIC#0</p>
     </footer>
 
     <script>
-        // --- 1. TYPEWRITER QUOTE ENGINE ---
         const quotes = [
             "WELCOME TO THE JUNGLE", "HACK THE PLANET", "STAY PARANOID",
             "INFORMATION WANTS TO BE FREE", "ROOT@JUNGLE:~#", 
@@ -216,10 +255,9 @@
             quoteElement.innerHTML = '';
             typeWriter(newQuote, 0);
         }
-        setInterval(updateQuote, 180000); // 3 minute interval
+        setInterval(updateQuote, 180000);
         updateQuote();
 
-        // --- 2. SMART CLIPBOARD LOGIC ---
         document.querySelectorAll('.copyable').forEach(item => {
             item.addEventListener('click', function(e) {
                 const destination = this.getAttribute('href');
