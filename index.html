@@ -26,28 +26,25 @@
     </nav>
 
     <main class="grid-content">
-        <div class="security-posture" style="grid-column: 1 / -1; margin-bottom: 30px;">
-            <p style="font-family: 'Courier New', monospace; font-size: 0.9em; color: #aaa; margin: 15px 0;">
-                <span class="status-active" style="color: #ff3e3e; font-weight: bold;">[POSTURE: SELECTIVE_DISCLOSURE]</span> — 
-                The Jungle Roadmap. Documenting the evolution from static code to autonomous system.
-            </p>
+        <div class="security-posture">
+            <p>[POSTURE: SELECTIVE_DISCLOSURE] — The Jungle Roadmap. Documenting the evolution from static code to autonomous system.</p>
         </div>
 
-        <h1 style="grid-column: 1/-1; color: #ff3e3e; font-family: monospace; letter-spacing: 2px;">[PHASE_01: INFRASTRUCTURE]</h1>
+        <h1 class="phase-header">[PHASE_01: INFRASTRUCTURE]</h1>
 
         <div class="insights-grid">
             
             <div class="insight-card">
                 <div class="card-header">[000]</div>
                 <h3>KERNEL_INIT</h3>
-                <div class="insight-description">Establishing the CSS variables and the 'Jungle' color palette.</div>
+                <div class="insight-description">Establishing the CSS variables and the 'Jungle' color palette (#ff3e3e on #0a0a0a).</div>
                 <div class="read-more" onclick="toggleLog(this)">READ_LOG</div>
             </div>
 
             <div class="insight-card">
                 <div class="card-header">[001]</div>
                 <h3>THE_SANDWICH_PROTOCOL</h3>
-                <div class="insight-description">Organizing code blocks with heavy visual headers.</div>
+                <div class="insight-description">Organizing code blocks with heavy visual headers for 100MPH navigation.</div>
                 <div class="read-more" onclick="toggleLog(this)">READ_LOG</div>
             </div>
 
@@ -55,50 +52,27 @@
     </main>
 
     <script>
-        // ========================================================================
-        // UI: DIRECTORY DROPDOWN
-        // ========================================================================
-        function toggleMenu() { document.getElementById("myDropdown").classList.toggle("show"); }
+        // FUNCTION: Toggle the Directory Menu
+        function toggleMenu() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
 
-        // ========================================================================
-        // UI: TOGGLE LOG REVEAL
-        // ========================================================================
+        // FUNCTION: Toggle Card Logs
         function toggleLog(button) {
             const card = button.closest('.insight-card');
             card.classList.toggle('active');
             button.innerText = card.classList.contains('active') ? "CLOSE_LOG" : "READ_LOG";
         }
-        // ========================================================================
-// UI: DIRECTORY DROPDOWN (The Missing Engine)
-// ========================================================================
-function toggleMenu() {
-    document.getElementById("myDropdown").classList.toggle("show");
-}
 
-// ========================================================================
-// UI: GLOBAL CLICK HANDLER (Closes menu if you click away)
-// ========================================================================
-window.onclick = function(event) {
-    if (!event.target.matches('.dropbtn')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        for (var i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-            }
-        }
-    }
-}
-
-        // ========================================================================
-        // UI: GLOBAL CLICK HANDLER
-        // ========================================================================
+        // FAIL-SAFE: Close menu if clicking outside of it
         window.onclick = function(event) {
           if (!event.target.matches('.dropbtn')) {
             var dropdowns = document.getElementsByClassName("dropdown-content");
             for (var i = 0; i < dropdowns.length; i++) {
               var openDropdown = dropdowns[i];
-              if (openDropdown.classList.contains('show')) { openDropdown.classList.remove('show'); }
+              if (openDropdown.classList.contains('show')) { 
+                  openDropdown.classList.remove('show'); 
+              }
             }
           }
         }
