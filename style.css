@@ -231,3 +231,7 @@ li a:hover {
 .show {
     display: block !important;
 }
+/* THE MAGIC: This class is toggled by JavaScript to show the menu */
+.show {
+    display: block !important;
+}
