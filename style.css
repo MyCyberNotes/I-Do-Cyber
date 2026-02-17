@@ -235,3 +235,68 @@ li a:hover {
 .show {
     display: block !important;
 }
+/* --- THE LIBRARY ARCHIVE GRID --- */
+.insights-grid {
+    display: grid;
+    /* This automatically creates as many columns as will fit (min 300px each) */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+    gap: 20px;
+    padding: 20px 0;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* --- THE INDIVIDUAL LIBRARY CARDS --- */
+.insight-card {
+    background: #0a0a0a; /* Deep black for that terminal feel */
+    border: 1px solid #333;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 200px;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect to show "active" status */
+.insight-card:hover {
+    border-color: #ff3e3e; /* Our signature posture red */
+    background: #111;
+    transform: translateY(-3px); /* Subtle lift */
+}
+
+.card-header {
+    font-family: 'Courier New', monospace;
+    color: #ff3e3e;
+    font-size: 0.8em;
+    margin-bottom: 10px;
+}
+
+.insight-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.1em;
+    color: #eee;
+    letter-spacing: 1px;
+}
+
+.insight-card p {
+    font-size: 0.9em;
+    color: #888;
+    line-height: 1.4;
+    margin-bottom: 20px;
+}
+
+.read-more {
+    font-family: 'Courier New', monospace;
+    color: #555;
+    text-decoration: none;
+    font-size: 0.8em;
+    align-self: flex-start;
+    border: 1px solid #333;
+    padding: 5px 10px;
+}
+
+.read-more:hover {
+    color: #fff;
+    background: #333;
+}
