@@ -1,114 +1,238 @@
-/* --- 1. GLOBAL SETTINGS --- */
-html, body {
-    margin: 0;
-    padding: 0;
-    /* Unifies the background to prevent the gray gap issue */
-    background-color: #0a0a0a; 
-    /* Prevents horizontal scrolling into empty space */
-    overflow-x: hidden; 
-    min-height: 100vh;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyCyberNotes | Bug Bounty Roadmap</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-body {
-    display: flex;
-    flex-direction: column;
-    color: #e0e0e0;
-    font-family: 'Courier New', Courier, monospace;
-}
+    <nav class="top-nav">
+        <div class="nav-left">
+            <a href="index.html">jungle</a> > 
+            <a href="about.html">about</a> > 
+            <a href="https://github.com/MyCyberNotes/I-Do-Cyber/discussions" target="_blank">community</a>
+        </div>
+        
+        <div class="nav-center" id="jungle-quote">WELCOME TO THE JUNGLE</div>
+        
+        <div class="nav-right">
+            <form action="#" class="search-form" onsubmit="return false;">
+                <input type="text" placeholder="search the jungle..." class="nav-search">
+            </form>
+        </div>
+    </nav>
 
-/* --- 2. TOP NAVIGATION --- */
-.top-nav { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    padding: 10px 20px; 
-    background-color: #1a1a1a; 
-    border-bottom: 1px solid #333; 
-    position: sticky; 
-    top: 0; 
-    z-index: 1000; 
-}
+    <main class="grid-content">
+        <section class="cl-column">
+            <h2>01_networking</h2>
+            <ul>
+                <li><a href="#" class="copyable">osi model layers</a></li>
+                <li><a href="#" class="copyable">dns resolution</a></li>
+                <li><a href="#" class="copyable">tcp/udp handshakes</a></li>
+                <li><a href="#" class="copyable">ip addressing</a></li>
+            </ul>
+        </section>
 
-.nav-left, .nav-right { flex: 1; font-size: 0.85em; color: #888; }
-.nav-left a { color: #888; text-decoration: none; transition: 0.3s; }
-.nav-left a:hover { color: #ffffff; text-shadow: 0 0 8px rgba(255, 255, 255, 0.6); }
+        <section class="cl-column">
+            <h2>02_web_dev</h2>
+            <ul>
+                <li><a href="#" class="copyable">html5/css3 basics</a></li>
+                <li><a href="#" class="copyable">dom manipulation</a></li>
+                <li><a href="#" class="copyable">client-side js</a></li>
+                <li><a href="#" class="copyable">responsive design</a></li>
+            </ul>
+        </section>
 
-.nav-center { 
-    flex: 2; 
-    text-align: center; 
-    font-weight: bold; 
-    letter-spacing: 2px; 
-    color: #ffffff; 
-}
+        <section class="cl-column">
+            <h2>03_unix_cli</h2>
+            <ul>
+                <li><a href="#" class="copyable">filesystem navigation</a></li>
+                <li><a href="#" class="copyable">permissions & chmod</a></li>
+                <li><a href="#" class="copyable">bash scripting</a></li>
+                <li><a href="#" class="copyable">process management</a></li>
+            </ul>
+        </section>
 
-.nav-search { 
-    background: #000; 
-    border: 1px solid #444; 
-    color: #58a6ff; 
-    padding: 5px 10px; 
-    outline: none; 
-    width: 100%; 
-    max-width: 200px; 
-    float: right;
-    font-family: inherit;
-}
+        <section class="cl-column">
+            <h2>04_python_automation</h2>
+            <ul>
+                <li><a href="#" class="copyable">requests library</a></li>
+                <li><a href="#" class="copyable">beautifulsoup scrapers</a></li>
+                <li><a href="#" class="copyable">custom brute-forcers</a></li>
+                <li><a href="#" class="copyable">api interaction</a></li>
+            </ul>
+        </section>
 
-.nav-search::placeholder { color: #888; }
+        <section class="cl-column">
+            <h2>05_legal_&_ethics</h2>
+            <ul>
+                <li><a href="#" class="copyable">cfaa compliance</a></li>
+                <li><a href="#" class="copyable">safe harbor clauses</a></li>
+                <li><a href="#" class="copyable">responsible disclosure</a></li>
+                <li><a href="#" class="copyable">ethical hacking laws</a></li>
+            </ul>
+        </section>
 
-/* --- 3. THE ROADMAP GRID --- */
-.grid-content { 
-    flex-grow: 1; 
-    display: grid; 
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
-    gap: 30px; 
-    padding: 40px 20px; 
-    max-width: 1600px; 
-    margin: 0 auto; 
-    width: 100%;
-}
+        <section class="cl-column">
+            <h2>06_recon_&_osint</h2>
+            <ul>
+                <li><a href="google-dorking.html">google dorking</a></li>
+                <li><a href="#" class="copyable">subdomain enumeration</a></li>
+                <li><a href="#" class="copyable">github search leaks</a></li>
+                <li><a href="#" class="copyable">whois analysis</a></li>
+            </ul>
+        </section>
 
-.cl-column { 
-    background: #080808; 
-    border: 1px solid #1a1a1a; 
-    padding: 15px; 
-    border-radius: 4px; 
-}
+        <section class="cl-column">
+            <h2>07_burp_mastery</h2>
+            <ul>
+                <li><a href="#" class="copyable">intercepting traffic</a></li>
+                <li><a href="#" class="copyable">repeater vs intruder</a></li>
+                <li><a href="#" class="copyable">extender plugins</a></li>
+                <li><a href="#" class="copyable">decoder tools</a></li>
+            </ul>
+        </section>
 
-.cl-column h2 { 
-    font-size: 0.95em; 
-    text-transform: lowercase; 
-    border-bottom: 1px solid #333; 
-    padding-bottom: 5px; 
-    margin-bottom: 10px; 
-    color: #888; 
-}
+        <section class="cl-column">
+            <h2>08_owasp_top_10_pt1</h2>
+            <ul>
+                <li><a href="#" class="copyable">broken access control</a></li>
+                <li><a href="#" class="copyable">cryptographic failure</a></li>
+                <li><a href="#" class="copyable">injection attacks</a></li>
+                <li><a href="#" class="copyable">insecure design</a></li>
+            </ul>
+        </section>
 
-/* --- 4. THE SCROLLING LISTS --- */
-ul { list-style: none; max-height: 150px; overflow-y: auto; padding-right: 5px; }
+        <section class="cl-column">
+            <h2>09_owasp_top_10_pt2</h2>
+            <ul>
+                <li><a href="#" class="copyable">security misconfig</a></li>
+                <li><a href="#" class="copyable">vulnerable components</a></li>
+                <li><a href="#" class="copyable">auth failures</a></li>
+                <li><a href="#" class="copyable">ssrf techniques</a></li>
+            </ul>
+        </section>
 
-/* Custom Scrollbar */
-ul::-webkit-scrollbar { width: 4px; }
-ul::-webkit-scrollbar-track { background: #050505; }
-ul::-webkit-scrollbar-thumb { background: #222; }
-ul::-webkit-scrollbar-thumb:hover { background: #58a6ff; }
+        <section class="cl-column">
+            <h2>10_xss_attacks</h2>
+            <ul>
+                <li><a href="#" class="copyable">stored vs reflected</a></li>
+                <li><a href="#" class="copyable">dom-based xss</a></li>
+                <li><a href="#" class="copyable">payload crafting</a></li>
+                <li><a href="#" class="copyable">filter bypassing</a></li>
+            </ul>
+        </section>
 
-li { margin-bottom: 8px; }
-li a { 
-    text-decoration: none; 
-    color: #58a6ff; /* GitHub Blue */
-    font-size: 0.9em; 
-    transition: 0.2s; 
-}
+        <section class="cl-column">
+            <h2>11_api_pentesting</h2>
+            <ul>
+                <li><a href="#" class="copyable">rest/graphql testing</a></li>
+                <li><a href="#" class="copyable">idors discovery</a></li>
+                <li><a href="#" class="copyable">jwt manipulation</a></li>
+                <li><a href="#" class="copyable">rate limiting bypass</a></li>
+            </ul>
+        </section>
 
-li a:hover { 
-    color: #ffffff !important; 
-    text-decoration: underline; 
-}
+        <section class="cl-column">
+            <h2>12_reporting</h2>
+            <ul>
+                <li><a href="#" class="copyable">cvss 3.1 scoring</a></li>
+                <li><a href="#" class="copyable">writing impact statements</a></li>
+                <li><a href="#" class="copyable">reproducible steps</a></li>
+                <li><a href="#" class="copyable">professional templates</a></li>
+            </ul>
+        </section>
 
-/* --- 5. FOOTER --- */
-.jungle-footer { text-align: center; padding: 40px 20px; font-size: 0.75em; color: #444; }
-.divider { margin-bottom: 10px; letter-spacing: 1px; color: #222; }
+        <section class="cl-column">
+            <h2>13_the_program_pick</h2>
+            <ul>
+                <li><a href="https://portswigger.net/web-security" target="_blank">portswigger academy</a></li>
+                <li><a href="https://www.hacker101.com/" target="_blank">hacker101 labs</a></li>
+                <li><a href="https://hackerone.com/deptofdefense" target="_blank">dod vdp (beginner)</a></li>
+                <li><a href="https://owasp.org/www-project-juice-shop/" target="_blank">owasp juice shop</a></li>
+            </ul>
+        </section>
 
-/* --- 6. TYPEWRITER CURSOR --- */
-.cursor { border-left: .1em solid #58a6ff; margin-left: 3px; animation: blink .7s infinite; }
-@keyframes blink { from, to { border-color: transparent } 50% { border-color: #58a6ff; } }
+        <section class="cl-column">
+            <h2>14_consulting_biz</h2>
+            <ul>
+                <li><a href="#" class="copyable">llc registration</a></li>
+                <li><a href="#" class="copyable">invoicing & payments</a></li>
+                <li><a href="#" class="copyable">contract writing</a></li>
+                <li><a href="#" class="copyable">liability insurance</a></li>
+            </ul>
+        </section>
+
+        <section class="cl-column">
+            <h2>15_the_sales_pitch</h2>
+            <ul>
+                <li><a href="#" class="copyable">cold email templates</a></li>
+                <li><a href="#" class="copyable">risk mitigation talk</a></li>
+                <li><a href="#" class="copyable">roi for security</a></li>
+                <li><a href="#" class="copyable">referral strategies</a></li>
+            </ul>
+        </section>
+
+        <section class="cl-column">
+            <h2>16_resilience</h2>
+            <ul>
+                <li><a href="#" class="copyable">handling duplicates</a></li>
+                <li><a href="#" class="copyable">dealing with n/a</a></li>
+                <li><a href="#" class="copyable">burnout prevention</a></li>
+                <li><a href="#" class="copyable">career longevity</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="jungle-footer">
+        <div class="divider">=======================================================</div>
+        <p>LAST_UPDATED: 2026-02-16 10:14:22 | SYSTEM: ONLINE</p>
+    </footer>
+
+    <script>
+        // --- 1. TYPEWRITER QUOTE ENGINE ---
+        const quotes = [
+            "WELCOME TO THE JUNGLE", "HACK THE PLANET", "STAY PARANOID",
+            "INFORMATION WANTS TO BE FREE", "ROOT@JUNGLE:~#", 
+            "SYSTEM_STATUS: OPERATIONAL", "ENCRYPT_EVERYTHING", 
+            "INITIALIZING NEURAL LINK...", "SEEK THE TRUTH IN THE CODE"
+        ];
+
+        function typeWriter(text, i, fnCallback) {
+            if (i < text.length) {
+                document.getElementById("jungle-quote").innerHTML = text.substring(0, i+1) +'<span aria-hidden="true" class="cursor"></span>';
+                setTimeout(function() { typeWriter(text, i + 1, fnCallback) }, 100); 
+            } else {
+                document.getElementById("jungle-quote").innerHTML = text;
+                if (typeof fnCallback == 'function') { setTimeout(fnCallback, 2000); }
+            }
+        }
+
+        function updateQuote() {
+            const quoteElement = document.getElementById('jungle-quote');
+            const newQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            quoteElement.innerHTML = '';
+            typeWriter(newQuote, 0);
+        }
+        setInterval(updateQuote, 180000); // 3 minute interval
+        updateQuote();
+
+        // --- 2. SMART CLIPBOARD LOGIC ---
+        document.querySelectorAll('.copyable').forEach(item => {
+            item.addEventListener('click', function(e) {
+                const destination = this.getAttribute('href');
+                if (destination === "#" || !destination) {
+                    e.preventDefault();
+                    navigator.clipboard.writeText(this.innerText).then(() => {
+                        const originalText = this.innerText;
+                        this.innerText = "COPIED!";
+                        setTimeout(() => { this.innerText = originalText; }, 800);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
