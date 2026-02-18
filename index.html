@@ -1,305 +1,491 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyCyberNotes | Bug Bounty Mastery</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MyCyberNotes | Bug Bounty Mastery</title>
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Root vars (matching your site's terminal aesthetic) ── */
+    :root {
+      --bg: #0d0d0d;
+      --surface: #111111;
+      --border: #1f1f1f;
+      --accent: #39ff14;       /* neon green */
+      --accent2: #00cfff;
+      --dim: #444;
+      --text: #a8b2a0;
+      --heading: #d4e0cc;
+      --font-mono: 'Courier New', Courier, monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── Scanline overlay ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.08) 2px,
+        rgba(0,0,0,0.08) 4px
+      );
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(13,13,13,0.96);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      z-index: 100;
+      flex-wrap: wrap;
+    }
+
+    .nav-brand {
+      color: var(--accent);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    nav a {
+      color: var(--dim);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 1px;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--accent); }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 60px 24px 40px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-title {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      color: var(--accent);
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      text-shadow: 0 0 20px rgba(57,255,20,0.4);
+      animation: flicker 4s infinite;
+    }
+
+    .hero-sub {
+      margin-top: 12px;
+      font-size: 11px;
+      color: var(--dim);
+      letter-spacing: 3px;
+    }
+
+    .blink {
+      animation: blink 1.1s step-end infinite;
+      color: var(--accent);
+    }
+
+    @keyframes blink { 50% { opacity: 0; } }
+    @keyframes flicker {
+      0%,95%,100% { opacity: 1; }
+      96% { opacity: 0.6; }
+      97% { opacity: 1; }
+      98% { opacity: 0.4; }
+      99% { opacity: 1; }
+    }
+
+    /* ── Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── Module card ── */
+    .module {
+      background: var(--surface);
+      padding: 28px 24px 24px;
+      transition: background 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .module:hover { background: #161616; }
+
+    .module::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .module:hover::before { opacity: 1; }
+
+    .module-number {
+      font-size: 10px;
+      color: var(--dim);
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+
+    .module-title {
+      font-size: 13px;
+      color: var(--accent);
+      text-transform: lowercase;
+      letter-spacing: 1px;
+      margin-bottom: 16px;
+      font-weight: bold;
+    }
+
+    .module ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .module ul li {
+      padding: 3px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 11px;
+    }
+
+    .module ul li:last-child { border-bottom: none; }
+
+    .module ul li a {
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .module ul li a::before {
+      content: '>';
+      color: var(--dim);
+      font-size: 10px;
+      flex-shrink: 0;
+    }
+
+    .module ul li a:hover { color: var(--accent2); }
+    .module ul li a:hover::before { color: var(--accent2); }
+
+    /* Badge tags */
+    .badge {
+      display: inline-block;
+      font-size: 9px;
+      padding: 1px 5px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      letter-spacing: 1px;
+      margin-left: auto;
+      flex-shrink: 0;
+      opacity: 0.6;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 16px 24px;
+      font-size: 10px;
+      color: var(--dim);
+      letter-spacing: 2px;
+      text-align: center;
+    }
+
+    footer span { color: var(--accent); }
+  </style>
 </head>
 <body>
 
-<nav class="top-nav">
-    <div class="nav-left">
-        <div class="dropdown" id="mainDropdown">
-            <a href="#" class="dropbtn" id="dropToggle">directory ▾</a>
-            <div class="dropdown-content" id="dropMenu">
-                <a href="index.html">jungle (roadmap)</a>
-                <a href="insights.html">insights (archive)</a>
-                <a href="about.html">about (operator)</a>
-                <a href="https://github.com/MyCyberNotes/I-Do-Cyber/discussions" target="_blank">community</a>
-            </div>
-        </div>
+  <nav>
+    <span class="nav-brand">[MyCyberNotes]</span>
+    <a href="index.html">jungle (roadmap)</a>
+    <a href="insights.html">insights (archive)</a>
+    <a href="about.html">about (operator)</a>
+    <a href="https://github.com/MyCyberNotes/I-Do-Cyber/discussions" target="_blank">community</a>
+  </nav>
+
+  <div class="hero">
+    <div class="hero-title">WELCOME TO THE JUNGLE<span class="blink">_</span></div>
+    <div class="hero-sub">// bug bounty mastery roadmap &nbsp;·&nbsp; 20 modules &nbsp;·&nbsp; zero to operator</div>
+  </div>
+
+  <div class="grid">
+
+    <!-- 01 -->
+    <div class="module">
+      <div class="module-number">// MODULE 01</div>
+      <div class="module-title">01_networking</div>
+      <ul>
+        <li><a href="#">osi model layers</a></li>
+        <li><a href="#">dns resolution</a></li>
+        <li><a href="#">tcp/udp handshakes</a></li>
+        <li><a href="#">ip addressing & subnets</a></li>
+      </ul>
     </div>
 
-    <div class="nav-center" id="jungle-quote">WELCOME TO THE JUNGLE</div>
-
-    <div class="nav-right">
-        <form action="#" class="search-form" onsubmit="return false;">
-            <input type="text" placeholder="search the jungle..." class="nav-search">
-        </form>
+    <!-- 02 -->
+    <div class="module">
+      <div class="module-number">// MODULE 02</div>
+      <div class="module-title">02_web_dev</div>
+      <ul>
+        <li><a href="#">html5/css3 basics</a></li>
+        <li><a href="#">dom manipulation</a></li>
+        <li><a href="#">client-side javascript</a></li>
+        <li><a href="#">how http/https works</a></li>
+      </ul>
     </div>
-</nav>
 
-<main class="grid-content">
-    <section class="cl-column">
-        <h2>01_networking</h2>
-        <ul>
-            <li><a href="#" class="copyable">osi model layers</a></li>
-            <li><a href="#" class="copyable">dns resolution</a></li>
-            <li><a href="#" class="copyable">tcp/udp handshakes</a></li>
-            <li><a href="#" class="copyable">ip addressing</a></li>
-        </ul>
-    </section>
+    <!-- 03 -->
+    <div class="module">
+      <div class="module-number">// MODULE 03</div>
+      <div class="module-title">03_unix_cli</div>
+      <ul>
+        <li><a href="#">filesystem navigation</a></li>
+        <li><a href="#">permissions & chmod</a></li>
+        <li><a href="#">bash scripting basics</a></li>
+        <li><a href="#">process management</a></li>
+      </ul>
+    </div>
 
-    <section class="cl-column">
-        <h2>02_web_dev</h2>
-        <ul>
-            <li><a href="#" class="copyable">html5/css3 basics</a></li>
-            <li><a href="#" class="copyable">dom manipulation</a></li>
-            <li><a href="#" class="copyable">client-side js</a></li>
-            <li><a href="#" class="copyable">responsive design</a></li>
-        </ul>
-    </section>
+    <!-- 04 -->
+    <div class="module">
+      <div class="module-number">// MODULE 04</div>
+      <div class="module-title">04_learning_platforms</div>
+      <ul>
+        <li><a href="https://portswigger.net/web-security" target="_blank">portswigger academy <span class="badge">free</span></a></li>
+        <li><a href="https://www.hackthebox.com" target="_blank">hack the box <span class="badge">free</span></a></li>
+        <li><a href="https://tryhackme.com" target="_blank">tryhackme <span class="badge">free</span></a></li>
+        <li><a href="https://www.hacker101.com" target="_blank">hacker101 & ctfs <span class="badge">free</span></a></li>
+      </ul>
+    </div>
 
-    <section class="cl-column">
-        <h2>03_unix_cli</h2>
-        <ul>
-            <li><a href="#" class="copyable">filesystem navigation</a></li>
-            <li><a href="#" class="copyable">permissions & chmod</a></li>
-            <li><a href="#" class="copyable">bash scripting</a></li>
-            <li><a href="#" class="copyable">process management</a></li>
-        </ul>
-    </section>
+    <!-- 05 -->
+    <div class="module">
+      <div class="module-number">// MODULE 05</div>
+      <div class="module-title">05_legal_&_ethics</div>
+      <ul>
+        <li><a href="#">cfaa compliance</a></li>
+        <li><a href="#">safe harbor clauses</a></li>
+        <li><a href="#">responsible disclosure</a></li>
+        <li><a href="#">ethical hacking laws</a></li>
+      </ul>
+    </div>
 
-    <section class="cl-column">
-        <h2>04_python_automation</h2>
-        <ul>
-            <li><a href="#" class="copyable">requests library</a></li>
-            <li><a href="#" class="copyable">beautifulsoup scrapers</a></li>
-            <li><a href="#" class="copyable">custom brute-forcers</a></li>
-            <li><a href="#" class="copyable">api interaction</a></li>
-        </ul>
-    </section>
+    <!-- 06 -->
+    <div class="module">
+      <div class="module-number">// MODULE 06</div>
+      <div class="module-title">06_recon_&_osint</div>
+      <ul>
+        <li><a href="google-dorking.html">google dorking</a></li>
+        <li><a href="#">subdomain enumeration</a></li>
+        <li><a href="#">github search leaks</a></li>
+        <li><a href="#">whois & shodan analysis</a></li>
+      </ul>
+    </div>
 
-    <section class="cl-column">
-        <h2>05_legal_&_ethics</h2>
-        <ul>
-            <li><a href="#" class="copyable">cfaa compliance</a></li>
-            <li><a href="#" class="copyable">safe harbor clauses</a></li>
-            <li><a href="#" class="copyable">responsible disclosure</a></li>
-            <li><a href="#" class="copyable">ethical hacking laws</a></li>
-        </ul>
-    </section>
+    <!-- 07 -->
+    <div class="module">
+      <div class="module-number">// MODULE 07</div>
+      <div class="module-title">07_burp_mastery</div>
+      <ul>
+        <li><a href="#">intercepting traffic</a></li>
+        <li><a href="#">repeater vs intruder</a></li>
+        <li><a href="#">extender plugins</a></li>
+        <li><a href="#">decoder & comparer tools</a></li>
+      </ul>
+    </div>
 
-    <section class="cl-column">
-        <h2>06_recon_&_osint</h2>
-        <ul>
-            <li><a href="google-dorking.html">google dorking</a></li>
-            <li><a href="#" class="copyable">subdomain enumeration</a></li>
-            <li><a href="#" class="copyable">github search leaks</a></li>
-            <li><a href="#" class="copyable">whois analysis</a></li>
-        </ul>
-    </section>
+    <!-- 08 -->
+    <div class="module">
+      <div class="module-number">// MODULE 08</div>
+      <div class="module-title">08_owasp_top_10_pt1</div>
+      <ul>
+        <li><a href="#">broken access control</a></li>
+        <li><a href="#">cryptographic failures</a></li>
+        <li><a href="#">injection attacks</a></li>
+        <li><a href="#">insecure design</a></li>
+      </ul>
+    </div>
 
-    <section class="cl-column">
-        <h2>07_burp_mastery</h2>
-        <ul>
-            <li><a href="#" class="copyable">intercepting traffic</a></li>
-            <li><a href="#" class="copyable">repeater vs intruder</a></li>
-            <li><a href="#" class="copyable">extender plugins</a></li>
-            <li><a href="#" class="copyable">decoder tools</a></li>
-        </ul>
-    </section>
+    <!-- 09 -->
+    <div class="module">
+      <div class="module-number">// MODULE 09</div>
+      <div class="module-title">09_owasp_top_10_pt2</div>
+      <ul>
+        <li><a href="#">security misconfiguration</a></li>
+        <li><a href="#">vulnerable components</a></li>
+        <li><a href="#">auth & session failures</a></li>
+        <li><a href="#">ssrf techniques</a></li>
+      </ul>
+    </div>
 
-    <section class="cl-column">
-        <h2>08_owasp_top_10_pt1</h2>
-        <ul>
-            <li><a href="#" class="copyable">broken access control</a></li>
-            <li><a href="#" class="copyable">cryptographic failure</a></li>
-            <li><a href="#" class="copyable">injection attacks</a></li>
-            <li><a href="#" class="copyable">insecure design</a></li>
-        </ul>
-    </section>
+    <!-- 10 -->
+    <div class="module">
+      <div class="module-number">// MODULE 10</div>
+      <div class="module-title">10_xss_attacks</div>
+      <ul>
+        <li><a href="#">stored vs reflected</a></li>
+        <li><a href="#">dom-based xss</a></li>
+        <li><a href="#">payload crafting</a></li>
+        <li><a href="#">filter bypassing</a></li>
+      </ul>
+    </div>
 
-    <section class="cl-column">
-        <h2>09_owasp_top_10_pt2</h2>
-        <ul>
-            <li><a href="#" class="copyable">security misconfig</a></li>
-            <li><a href="#" class="copyable">vulnerable components</a></li>
-            <li><a href="#" class="copyable">auth failures</a></li>
-            <li><a href="#" class="copyable">ssrf techniques</a></li>
-        </ul>
-    </section>
+    <!-- 11 -->
+    <div class="module">
+      <div class="module-number">// MODULE 11</div>
+      <div class="module-title">11_free_bounty_programs</div>
+      <ul>
+        <li><a href="https://hackerone.com/deptofdefense" target="_blank">dod vdp (beginner) <span class="badge">free</span></a></li>
+        <li><a href="https://bugcrowd.com/programs" target="_blank">bugcrowd public programs <span class="badge">free</span></a></li>
+        <li><a href="https://www.intigriti.com" target="_blank">intigriti programs <span class="badge">free</span></a></li>
+        <li><a href="https://owasp.org/www-project-juice-shop/" target="_blank">owasp juice shop <span class="badge">free</span></a></li>
+      </ul>
+    </div>
 
-    <section class="cl-column">
-        <h2>10_xss_attacks</h2>
-        <ul>
-            <li><a href="#" class="copyable">stored vs reflected</a></li>
-            <li><a href="#" class="copyable">dom-based xss</a></li>
-            <li><a href="#" class="copyable">payload crafting</a></li>
-            <li><a href="#" class="copyable">filter bypassing</a></li>
-        </ul>
-    </section>
+    <!-- 12 -->
+    <div class="module">
+      <div class="module-number">// MODULE 12</div>
+      <div class="module-title">12_writing_reports</div>
+      <ul>
+        <li><a href="#">cvss 3.1 scoring</a></li>
+        <li><a href="#">writing impact statements</a></li>
+        <li><a href="#">reproducible steps</a></li>
+        <li><a href="#">professional templates</a></li>
+      </ul>
+    </div>
 
-    <section class="cl-column">
-        <h2>11_api_pentesting</h2>
-        <ul>
-            <li><a href="#" class="copyable">rest/graphql testing</a></li>
-            <li><a href="#" class="copyable">idors discovery</a></li>
-            <li><a href="#" class="copyable">jwt manipulation</a></li>
-            <li><a href="#" class="copyable">rate limiting bypass</a></li>
-        </ul>
-    </section>
+    <!-- 13 -->
+    <div class="module">
+      <div class="module-number">// MODULE 13</div>
+      <div class="module-title">13_api_&_mobile_hacking</div>
+      <ul>
+        <li><a href="#">rest/graphql testing</a></li>
+        <li><a href="#">jwt manipulation & idor</a></li>
+        <li><a href="#">burp mobile proxy setup</a></li>
+        <li><a href="#">owasp masvs checklist</a></li>
+      </ul>
+    </div>
 
-    <section class="cl-column">
-        <h2>12_cloud_security</h2>
-        <ul>
-            <li><a href="#" class="copyable">aws s3 misconfig</a></li>
-            <li><a href="#" class="copyable">azure blob hunting</a></li>
-            <li><a href="#" class="copyable">iam policy bypass</a></li>
-            <li><a href="#" class="copyable">gcp bucket leaks</a></li>
-        </ul>
-    </section>
+    <!-- 14 -->
+    <div class="module">
+      <div class="module-number">// MODULE 14</div>
+      <div class="module-title">14_certs_&_career</div>
+      <ul>
+        <li><a href="#">ejpt (beginner cert)</a></li>
+        <li><a href="#">comptia security+</a></li>
+        <li><a href="#">oscp (advanced)</a></li>
+        <li><a href="#">which cert & when</a></li>
+      </ul>
+    </div>
 
-    <section class="cl-column">
-        <h2>13_mobile_pentesting</h2>
-        <ul>
-            <li><a href="#" class="copyable">apk de-compilation</a></li>
-            <li><a href="#" class="copyable">static code analysis</a></li>
-            <li><a href="#" class="copyable">burp mobile proxy</a></li>
-            <li><a href="#" class="copyable">owasp masvs</a></li>
-        </ul>
-    </section>
+    <!-- 15 -->
+    <div class="module">
+      <div class="module-number">// MODULE 15</div>
+      <div class="module-title">15_toolkit_lab</div>
+      <ul>
+        <li><a href="#">vps setup (openbsd)</a></li>
+        <li><a href="#">auto-recon pipelines</a></li>
+        <li><a href="#">nmap, gobuster, ffuf</a></li>
+        <li><a href="#">custom bash scripts</a></li>
+      </ul>
+    </div>
 
-    <section class="cl-column">
-        <h2>14_source_code_audit</h2>
-        <ul>
-            <li><a href="#" class="copyable">secret scanning</a></li>
-            <li><a href="#" class="copyable">finding sinkholes</a></li>
-            <li><a href="#" class="copyable">logic flaw detection</a></li>
-            <li><a href="#" class="copyable">sast vs dast tools</a></li>
-        </ul>
-    </section>
+    <!-- 16 -->
+    <div class="module">
+      <div class="module-number">// MODULE 16</div>
+      <div class="module-title">16_python_for_hunters</div>
+      <ul>
+        <li><a href="#">requests library basics</a></li>
+        <li><a href="#">beautifulsoup scrapers</a></li>
+        <li><a href="#">building brute-forcers</a></li>
+        <li><a href="#">api interaction scripts</a></li>
+      </ul>
+    </div>
 
-    <section class="cl-column">
-        <h2>15_toolkit_lab</h2>
-        <ul>
-            <li><a href="#" class="copyable">vps setup (openbsd)</a></li>
-            <li><a href="#" class="copyable">auto-recon pipelines</a></li>
-            <li><a href="#" class="copyable">discord/slack notify</a></li>
-            <li><a href="#" class="copyable">custom bash scripts</a></li>
-        </ul>
-    </section>
+    <!-- 17 -->
+    <div class="module">
+      <div class="module-number">// MODULE 17</div>
+      <div class="module-title">17_mindset_&_resilience</div>
+      <ul>
+        <li><a href="#">handling duplicates & n/a</a></li>
+        <li><a href="#">burnout prevention</a></li>
+        <li><a href="#">staying consistent</a></li>
+        <li><a href="#">career longevity tips</a></li>
+      </ul>
+    </div>
 
-    <section class="cl-column">
-        <h2>16_reporting</h2>
-        <ul>
-            <li><a href="#" class="copyable">cvss 3.1 scoring</a></li>
-            <li><a href="#" class="copyable">writing impact statements</a></li>
-            <li><a href="#" class="copyable">reproducible steps</a></li>
-            <li><a href="#" class="copyable">professional templates</a></li>
-        </ul>
-    </section>
+    <!-- 18 -->
+    <div class="module">
+      <div class="module-number">// MODULE 18</div>
+      <div class="module-title">18_starting_your_biz</div>
+      <ul>
+        <li><a href="#">llc registration</a></li>
+        <li><a href="#">invoicing & payments</a></li>
+        <li><a href="#">liability insurance</a></li>
+        <li><a href="#">setting your rates</a></li>
+      </ul>
+    </div>
 
-    <section class="cl-column">
-        <h2>17_the_program_pick</h2>
-        <ul>
-            <li><a href="https://portswigger.net/web-security" target="_blank">portswigger academy</a></li>
-            <li><a href="https://www.hacker101.com/" target="_blank">hacker101 labs</a></li>
-            <li><a href="https://hackerone.com/deptofdefense" target="_blank">dod vdp (beginner)</a></li>
-            <li><a href="https://owasp.org/www-project-juice-shop/" target="_blank">owasp juice shop</a></li>
-        </ul>
-    </section>
+    <!-- 19 -->
+    <div class="module">
+      <div class="module-number">// MODULE 19</div>
+      <div class="module-title">19_finding_clients</div>
+      <ul>
+        <li><a href="#">cold outreach templates</a></li>
+        <li><a href="#">the risk-mitigation pitch</a></li>
+        <li><a href="#">roi talk for non-techies</a></li>
+        <li><a href="#">referral strategies</a></li>
+      </ul>
+    </div>
 
-    <section class="cl-column">
-        <h2>18_consulting_biz</h2>
-        <ul>
-            <li><a href="#" class="copyable">llc registration</a></li>
-            <li><a href="#" class="copyable">invoicing & payments</a></li>
-            <li><a href="#" class="copyable">contract writing</a></li>
-            <li><a href="#" class="copyable">liability insurance</a></li>
-        </ul>
-    </section>
+    <!-- 20 -->
+    <div class="module">
+      <div class="module-number">// MODULE 20</div>
+      <div class="module-title">20_running_the_business</div>
+      <ul>
+        <li><a href="#">sample contracts</a></li>
+        <li><a href="#">scope negotiations</a></li>
+        <li><a href="#">handling rejections</a></li>
+        <li><a href="#">growing your clientele</a></li>
+      </ul>
+    </div>
 
-    <section class="cl-column">
-        <h2>19_the_sales_pitch</h2>
-        <ul>
-            <li><a href="#" class="copyable">cold email templates</a></li>
-            <li><a href="#" class="copyable">risk mitigation talk</a></li>
-            <li><a href="#" class="copyable">roi for security</a></li>
-            <li><a href="#" class="copyable">referral strategies</a></li>
-        </ul>
-    </section>
+  </div>
 
-    <section class="cl-column">
-        <h2>20_resilience</h2>
-        <ul>
-            <li><a href="#" class="copyable">handling duplicates</a></li>
-            <li><a href="#" class="copyable">dealing with n/a</a></li>
-            <li><a href="#" class="copyable">burnout prevention</a></li>
-            <li><a href="#" class="copyable">career longevity</a></li>
-        </ul>
-    </section>
-</main>
-
-<footer class="jungle-footer">
-    <div class="divider">========================================================================</div>
-    <p>LAST_UPDATED: 2026-02-16 22:45:00 | SYSTEM: ONLINE | KERNEL: OPENBSD 7.4 GENERIC#0</p>
-</footer>
-
-<script>
-    // --- STICKY DROPDOWN TOGGLE ---
-    document.addEventListener('DOMContentLoaded', function () {
-        var toggle = document.getElementById('dropToggle');
-        var menu   = document.getElementById('dropMenu');
-
-        toggle.addEventListener('click', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            menu.classList.toggle('open');
-        });
-
-        document.addEventListener('click', function (e) {
-            if (!e.target.closest('#mainDropdown')) {
-                menu.classList.remove('open');
-            }
-        });
-    });
-
-    // --- TYPEWRITER ---
-    const quotes = [
-        "WELCOME TO THE JUNGLE", "HACK THE PLANET", "STAY PARANOID",
-        "INFORMATION WANTS TO BE FREE", "ROOT@JUNGLE:~#",
-        "SYSTEM_STATUS: OPERATIONAL", "ENCRYPT_EVERYTHING",
-        "INITIALIZING NEURAL LINK...", "SEEK THE TRUTH IN THE CODE"
-    ];
-
-    function typeWriter(text, i, fnCallback) {
-        if (i < text.length) {
-            document.getElementById("jungle-quote").innerHTML =
-                text.substring(0, i + 1) + '<span aria-hidden="true" class="cursor"></span>';
-            setTimeout(function () { typeWriter(text, i + 1, fnCallback); }, 100);
-        } else {
-            document.getElementById("jungle-quote").innerHTML = text;
-            if (typeof fnCallback == 'function') { setTimeout(fnCallback, 2000); }
-        }
-    }
-
-    function updateQuote() {
-        var quoteElement = document.getElementById('jungle-quote');
-        var newQuote = quotes[Math.floor(Math.random() * quotes.length)];
-        quoteElement.innerHTML = '';
-        typeWriter(newQuote, 0);
-    }
-
-    setInterval(updateQuote, 180000);
-    updateQuote();
-
-    // --- COPY ON CLICK ---
-    document.querySelectorAll('.copyable').forEach(function (item) {
-        item.addEventListener('click', function (e) {
-            var destination = this.getAttribute('href');
-            if (destination === "#" || !destination) {
-                e.preventDefault();
-                var originalText = this.innerText;
-                navigator.clipboard.writeText(originalText).then(function () {
-                    item.innerText = "COPIED!";
-                    setTimeout(function () { item.innerText = originalText; }, 800);
-                });
-            }
-        });
-    });
-</script>
+  <footer>
+    ========================================================================<br>
+    LAST_UPDATED: 2026-02-18 00:00:00 &nbsp;|&nbsp; SYSTEM: <span>ONLINE</span> &nbsp;|&nbsp; KERNEL: OPENBSD 7.4 GENERIC#0
+  </footer>
 
 </body>
 </html>
