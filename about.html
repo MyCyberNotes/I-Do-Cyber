@@ -199,10 +199,17 @@
     /* Topic grid */
     .topic-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 16px;
       margin-bottom: 64px;
       animation: fadeUp 0.6s 0.4s ease both;
+    }
+
+    @media (max-width: 860px) {
+      .topic-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .topic-grid { grid-template-columns: 1fr; }
     }
 
     .topic-card {
@@ -370,75 +377,53 @@
     </div>
 
     <div class="section">
-      <div class="section-label">// The Topics</div>
-      <h2>What You'll Find Here</h2>
+      <div class="section-label">// The Roadmap</div>
+      <h2>6 Phases. 20 Modules. One Journey.</h2>
+      <p>The full roadmap lives on the <a href="index.html" style="color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(0,255,157,0.3);">Home page</a> — each phase below groups those modules into a clear stage of the journey.</p>
     </div>
 
     <div class="topic-grid">
 
       <div class="topic-card">
-        <div class="topic-num">// TOPIC_01</div>
-        <div class="topic-icon">🐛</div>
-        <div class="topic-title">Bug Bounty Hunting</div>
-        <div class="topic-desc">Recon techniques, vulnerability classes, write-ups, and platform tips for HackerOne, Bugcrowd & more.</div>
-      </div>
-
-      <div class="topic-card">
-        <div class="topic-num">// TOPIC_02</div>
-        <div class="topic-icon">🔐</div>
-        <div class="topic-title">Web Security</div>
-        <div class="topic-desc">XSS, SQL injection, CSRF, IDOR, and the OWASP Top 10 — explained from scratch and through practice.</div>
-      </div>
-
-      <div class="topic-card">
-        <div class="topic-num">// TOPIC_03</div>
+        <div class="topic-num">// PHASE 01 &nbsp;·&nbsp; Modules 01–03</div>
         <div class="topic-icon">🌐</div>
-        <div class="topic-title">Networking</div>
-        <div class="topic-desc">TCP/IP, DNS, HTTP/HTTPS, firewalls, and the protocols that underpin everything on the internet.</div>
+        <div class="topic-title">Foundations</div>
+        <div class="topic-desc">Build the base. Networking, Web Development, and Unix & CLI — everything you need before you touch a single vulnerability.</div>
       </div>
 
       <div class="topic-card">
-        <div class="topic-num">// TOPIC_04</div>
-        <div class="topic-icon">💻</div>
-        <div class="topic-title">Web Development</div>
-        <div class="topic-desc">HTML, CSS, JavaScript, and backend basics — because understanding how apps are built helps find where they break.</div>
-      </div>
-
-      <div class="topic-card">
-        <div class="topic-num">// TOPIC_05</div>
-        <div class="topic-icon">
-          <!-- Puffy the OpenBSD pufferfish SVG -->
-          <svg width="34" height="34" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="38" cy="42" rx="26" ry="20" fill="#f4a836"/>
-            <line x1="24" y1="22" x2="20" y2="12" stroke="#f4a836" stroke-width="3" stroke-linecap="round"/>
-            <line x1="32" y1="19" x2="30" y2="8" stroke="#f4a836" stroke-width="3" stroke-linecap="round"/>
-            <line x1="40" y1="18" x2="40" y2="7" stroke="#f4a836" stroke-width="3" stroke-linecap="round"/>
-            <line x1="48" y1="19" x2="50" y2="8" stroke="#f4a836" stroke-width="3" stroke-linecap="round"/>
-            <line x1="55" y1="23" x2="60" y2="13" stroke="#f4a836" stroke-width="3" stroke-linecap="round"/>
-            <line x1="24" y1="60" x2="20" y2="70" stroke="#f4a836" stroke-width="3" stroke-linecap="round"/>
-            <line x1="32" y1="63" x2="30" y2="73" stroke="#f4a836" stroke-width="3" stroke-linecap="round"/>
-            <line x1="40" y1="64" x2="40" y2="75" stroke="#f4a836" stroke-width="3" stroke-linecap="round"/>
-            <line x1="48" y1="63" x2="50" y2="73" stroke="#f4a836" stroke-width="3" stroke-linecap="round"/>
-            <line x1="55" y1="60" x2="60" y2="70" stroke="#f4a836" stroke-width="3" stroke-linecap="round"/>
-            <ellipse cx="38" cy="45" rx="16" ry="11" fill="#fde5b0"/>
-            <path d="M64 42 Q78 30 76 42 Q78 54 64 42Z" fill="#e08c20"/>
-            <circle cx="25" cy="38" r="5" fill="white"/>
-            <circle cx="24" cy="37" r="2.5" fill="#1a1a2e"/>
-            <circle cx="23.2" cy="36.2" r="0.9" fill="white"/>
-            <path d="M16 44 Q18 48 22 46" stroke="#c0621a" stroke-width="2" stroke-linecap="round" fill="none"/>
-            <path d="M35 22 Q42 14 48 22" stroke="#e08c20" stroke-width="2.5" fill="#f4a836" fill-opacity="0.6"/>
-            <path d="M48 46 Q58 40 58 50 Q52 54 48 50Z" fill="#e08c20" opacity="0.8"/>
-          </svg>
-        </div>
-        <div class="topic-title">Unix & Command Line</div>
-        <div class="topic-desc">Shell scripting, file systems, permissions, and tools like Bash that every security researcher relies on.</div>
-      </div>
-
-      <div class="topic-card">
-        <div class="topic-num">// TOPIC_06</div>
+        <div class="topic-num">// PHASE 02 &nbsp;·&nbsp; Modules 04–07</div>
         <div class="topic-icon">🛠️</div>
-        <div class="topic-title">Tools & Labs</div>
-        <div class="topic-desc">Burp Suite, Nmap, Gobuster, TryHackMe, HackTheBox — walkthroughs and notes from hands-on practice.</div>
+        <div class="topic-title">Learning the Tools</div>
+        <div class="topic-desc">Practice platforms, legal boundaries, recon & OSINT, and Burp Suite mastery — your toolkit before the hunt begins.</div>
+      </div>
+
+      <div class="topic-card">
+        <div class="topic-num">// PHASE 03 &nbsp;·&nbsp; Modules 08–10</div>
+        <div class="topic-icon">🔐</div>
+        <div class="topic-title">Vulnerability Knowledge</div>
+        <div class="topic-desc">Deep dives into the OWASP Top 10 and XSS attacks — learning exactly what to look for and how attackers think.</div>
+      </div>
+
+      <div class="topic-card">
+        <div class="topic-num">// PHASE 04 &nbsp;·&nbsp; Modules 11–13</div>
+        <div class="topic-icon">🐛</div>
+        <div class="topic-title">Hunting for Real</div>
+        <div class="topic-desc">Free bounty programs, writing professional reports, and API & mobile hacking — your first real targets and your first real submissions.</div>
+      </div>
+
+      <div class="topic-card">
+        <div class="topic-num">// PHASE 05 &nbsp;·&nbsp; Modules 14–17</div>
+        <div class="topic-icon">🎯</div>
+        <div class="topic-title">Going Pro</div>
+        <div class="topic-desc">Certifications, toolkit setup, Python scripting, and the mindset to keep going when things get tough. This is where amateurs become professionals.</div>
+      </div>
+
+      <div class="topic-card">
+        <div class="topic-num">// PHASE 06 &nbsp;·&nbsp; Modules 18–20</div>
+        <div class="topic-icon">💼</div>
+        <div class="topic-title">Running the Business</div>
+        <div class="topic-desc">LLC registration, finding clients, closing deals, handling rejections, and growing a real cybersecurity consulting business.</div>
       </div>
 
     </div><!-- /topic-grid -->
