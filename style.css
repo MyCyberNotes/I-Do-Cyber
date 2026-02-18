@@ -50,6 +50,34 @@ body {
     float: right;
     font-family: inherit;
 }
+/* --- 2b. STICKY DROPDOWN --- */
+.dropdown { position: relative; display: inline-block; }
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    min-width: 180px;
+    z-index: 999;
+    padding: 5px 0;
+}
+.dropdown-content a {
+    display: block;
+    padding: 8px 15px;
+    color: #888;
+    text-decoration: none;
+    font-size: 0.85em;
+    transition: 0.2s;
+}
+.dropdown-content a:hover {
+    color: #ffffff;
+    background-color: #111;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+.dropdown-content.open { display: block; }
+.dropbtn { cursor: pointer; }
 
 /* --- 3. THE ROADMAP GRID --- */
 .grid-content { 
